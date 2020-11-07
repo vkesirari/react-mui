@@ -13,11 +13,11 @@ class HomeSub2 extends Component {
           <Typography variant="caption">
             There are no upcoming matches as of now
           </Typography>
-          <img
+          {/* <img
             style={{ textAlign: "center" }}
             src="/Player232.png"
             style={{ height: 175 }}
-          />
+          /> */}
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>

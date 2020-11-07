@@ -32,28 +32,26 @@ class App extends Component {
         <main className="container">
           <Grid container>
             <Grid item xs={12}>
-              <div>
-                <TopAppBar updateStatus={this.state.linkAct} />
-                <Switch>
-                  <Route path="/login" component={SignIn}></Route>
-                  <Route exact path="/home" component={Home}></Route>
-                  <Route path="/home/c" component={Home}></Route>
-                  <Route path="/home/q" component={Quiz}></Route>
-                  <Route path="/home/f" component={Football}></Route>
-                  {/* <Route path="/home/live" component={HomeSub1}></Route>
+              <TopAppBar updateStatus={this.state.linkAct} />
+              <Switch>
+                <Route path="/login" component={SignIn}></Route>
+                <Route exact path="/home" component={Home}></Route>
+                <Route path="/home/c" component={Home}></Route>
+                <Route path="/home/q" component={Quiz}></Route>
+                <Route path="/home/f" component={Football}></Route>
+                {/* <Route path="/home/live" component={HomeSub1}></Route>
                   <Route path="/home/play" component={HomeSub2}></Route> */}
 
-                  <Route exact path="/menu" component={Menu}></Route>
-                  <Route path="/menu/faq" component={FAQ}></Route>
-                  <Route path="/menu/privacy" component={Privacy}></Route>
+                <Route exact path="/menu" component={Menu}></Route>
+                <Route path="/menu/faq" component={FAQ}></Route>
+                <Route path="/menu/privacy" component={Privacy}></Route>
 
-                  <Route path="/register" component={SignUp}></Route>
-                  <Route path="/not-found" component={NotFound}></Route>
-                  <Redirect exact from="/" to="/home" />
-                  <Redirect to="/not-found" />
-                </Switch>
-                <BottomAppBar onUp={this.handleClickLink} />
-              </div>
+                <Route path="/register" component={SignUp}></Route>
+                <Route path="/not-found" component={NotFound}></Route>
+                <Redirect exact from="/" to="/home" />
+                <Redirect to="/not-found" />
+              </Switch>
+              <BottomAppBar onUp={this.handleClickLink} />
             </Grid>
             {/* <Grid item xs={7}>
               <div>

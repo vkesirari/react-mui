@@ -18,6 +18,18 @@ class HomeSub1 extends Component {
         teamA: "/bb.png",
         teamB: "/mi.png",
       },
+      // {
+      //   id: 3,
+      //   details: "Indian Premier League 2020 B",
+      //   teamA: "/bb.png",
+      //   teamB: "/mi.png",
+      // },
+      // {
+      //   id: 4,
+      //   details: "Indian Premier League 2020 B",
+      //   teamA: "/bb.png",
+      //   teamB: "/mi.png",
+      // },
     ],
     dynamicComp: "",
   };
@@ -42,6 +54,7 @@ class HomeSub1 extends Component {
             <React.Fragment key={liveData.id}>
               <Grid
                 style={{ cursor: "pointer" }}
+                className="gridB"
                 container
                 onClick={() => this.handleList(liveData.id)}
               >

@@ -8,12 +8,18 @@ class SelectSection extends Component {
     const { linkAc } = this.props;
 
     return (
-      <Grid container style={{ textAlign: "center", paddingTop: 10 }}>
+      <Grid
+        container
+        style={{ textAlign: "center", paddingTop: 10 }}
+        className="gridA"
+      >
         <Grid item xs={4}>
           <Typography
             variant="caption"
             className="oneTwo"
-            style={{ color: `${linkAc === "/home/c" ? "green" : "black"}` }}
+            style={{
+              color: `${linkAc === "/home/c" ? "salmon" : "white"}`,
+            }}
           >
             <li className="one">1</li>
             SELECT MATCH
