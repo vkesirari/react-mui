@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .App-link {
@@ -51,7 +51,6 @@
 .one {
   width: 30px;
   height: 30px;
-
   line-height: 30px;
   border: 2px solid #7d7d7d;
   display: block;
@@ -109,3 +108,57 @@ body {
 .MuiTypography-h5 {
   color: rgb(255, 255, 255);
 }
+h1 {
+  color: rgb(255, 255, 255);
+}
+
+/* .MuiBottomNavigation-root {
+  bottom: 0 !important;
+  position: fixed;
+  width: 100%;
+  background-color: #3f51b5 !important;
+} */
+@media (min-width: 780px) {
+  .tt {
+    width: 50% !important;
+  }
+  .MuiBottomNavigation-root {
+    position: fixed;
+    width: 50% !important;
+  }
+  .imgSet {
+    padding-left: 10px;
+  }
+}
+
+/* for ticket */
+
+/* .l1 {
+  font-style: italic;
+  font-weight: 900 !important;
+}
+.l2 {
+  font-weight: 700 !important;
+}
+.l4 {
+  font-weight: 500 !important;
+  color: white !important;
+}
+.l3 {
+  font-style: italic;
+  color: white;
+  font-weight: 700 !important;
+}
+
+.l5 {
+  font-weight: 500 !important;
+  font-size: xx-large !important;
+}
+.l6 {
+  font-size: large !important;
+  font-weight: 600 !important;
+} */
+/* .l7 {
+  font-size: large !important;
+  font-weight: 400 !important;
+} */

@@ -10,7 +10,7 @@ class HomeSub2 extends Component {
       <Grid xs={12} container style={{ padding: 20 }}>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-          <Typography variant="caption">
+          <Typography variant="h5">
             There are no upcoming matches as of now
           </Typography>
           {/* <img

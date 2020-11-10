@@ -58,7 +58,6 @@ class Cricket extends Component {
               style={{ height: 55 }}
               fullWidth
               variant="contained"
-              color="primary"
               onClick={() => this.handleClick("play")}
             >
               PLAY

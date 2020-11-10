@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import LiveSection from "./LiveSection";
+// import LiveSection from "./TicketSection";
+import { Link } from "react-router-dom";
 
 class HomeSub1 extends Component {
   state = {
@@ -36,27 +37,27 @@ class HomeSub1 extends Component {
 
   handleList = (name) => {
     // alert("Id : ", name);
-    console.log(name);
-    console.log(typeof (<LiveSection />));
-    // const dynamicComp = `<LiveSection data:${name}/>`;
-    const dynamicComp = <LiveSection />;
-
-    console.log(typeof dynamicComp);
-
-    this.setState({ dynamicComp });
+    // console.log(name);
+    // console.log(typeof (<LiveSection />));
+    // // const dynamicComp = `<LiveSection data:${name}/>`;
+    // const dynamicComp = <LiveSection />;
+    // console.log(typeof dynamicComp);
+    // this.setState({ dynamicComp });
   };
   render() {
-    let newO = this.state.dynamicComp;
+    // let newO = this.state.dynamicComp;
     return (
       <React.Fragment>
         <Grid container style={{ textAlign: "center" }}>
           {this.state.liveDatas.map((liveData) => (
             <React.Fragment key={liveData.id}>
               <Grid
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", textDecoration: "none" }}
                 className="gridB"
                 container
-                onClick={() => this.handleList(liveData.id)}
+                component={Link}
+                to={`/home/live/${liveData.id}`}
+                // onClick={() => this.handleList(liveData.id)}
               >
                 <Grid item xs={4}>
                   <img src={liveData.teamA} />
@@ -71,7 +72,7 @@ class HomeSub1 extends Component {
             </React.Fragment>
           ))}
         </Grid>
-        {newO}
+        {/* {newO} */}
       </React.Fragment>
     );
   }

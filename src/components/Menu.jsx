@@ -55,7 +55,7 @@ class Menu extends Component {
               key={menu.id}
               component={Link}
               to={menu.slug}
-              style={{ padding: 20, backgroundColor: "white" }}
+              style={{ padding: 20, backgroundColor: "rgb(255, 255, 255)" }}
             >
               <ListItemIcon>{menu.icon}</ListItemIcon>
               <ListItemText primary={menu.name} />

@@ -15,7 +15,8 @@ import Privacy from "./common/Privacy";
 import Grid from "@material-ui/core/Grid";
 import HomeSub1 from "./common/HomeSub1";
 import HomeSub2 from "./common/HomeSub2";
-
+import TicketSection from "./common/TicketSection";
+// import TicketSection from "./common/TicketSection";
 class App extends Component {
   state = {
     linkAct: "",
@@ -29,7 +30,7 @@ class App extends Component {
     console.log("globl", this.state);
     return (
       <React.Fragment>
-        <main className="container">
+        <main className="container" className="tt">
           <Grid container>
             <Grid item xs={12}>
               <TopAppBar updateStatus={this.state.linkAct} />
@@ -39,6 +40,8 @@ class App extends Component {
                 <Route path="/home/c" component={Home}></Route>
                 <Route path="/home/q" component={Quiz}></Route>
                 <Route path="/home/f" component={Football}></Route>
+                <Route path="/home/live/:id" component={TicketSection}></Route>
+                {/* render={props => <LiveSection {...props} user={user} />}  */}
                 {/* <Route path="/home/live" component={HomeSub1}></Route>
                   <Route path="/home/play" component={HomeSub2}></Route> */}
 

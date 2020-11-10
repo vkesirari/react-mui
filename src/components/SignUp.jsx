@@ -100,7 +100,7 @@ class SignUp extends Component {
         <div
           className=""
           style={{
-            backgroundColor: "white",
+            backgroundColor: "rgb(255, 255, 255)",
             paddingLeft: 8,
             paddingRight: 8,
             paddingBottom: 30,
@@ -182,7 +182,7 @@ class SignUp extends Component {
                     label="I Agree"
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{ color: "#109e38 !important" }}>
                   <Button
                     type="submit"
                     // fullWidth

@@ -67,7 +67,7 @@ class SignIn extends Component {
       <Container component="main" maxWidth="sm">
         <div
           style={{
-            backgroundColor: "white",
+            backgroundColor: "rgb(255, 255, 255)",
             paddingLeft: 8,
             paddingRight: 8,
             paddingBottom: 30,

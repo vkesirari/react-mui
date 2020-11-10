@@ -18,7 +18,9 @@ class SelectSection extends Component {
             variant="caption"
             className="oneTwo"
             style={{
-              color: `${linkAc === "/home/c" ? "salmon" : "white"}`,
+              color: `${
+                linkAc === "/home/c" ? "salmon" : "rgb(255, 255, 255)"
+              }`,
             }}
           >
             <li className="one">1</li>
