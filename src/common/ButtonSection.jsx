@@ -25,7 +25,7 @@ class ButtonSection extends Component {
     // console.log("first", vc);
     // return false;
     return (
-      <Grid container style={{ padding: 8 }}>
+      <Grid container style={{ padding: 0 }}>
         <Grid
           item
           xs={4}

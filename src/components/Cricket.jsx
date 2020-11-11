@@ -28,7 +28,7 @@ class Cricket extends Component {
     const { colorSet1, colorSet2, modelCall } = this.state;
     return (
       <React.Fragment>
-        <Grid container style={{ padding: 8 }}>
+        <Grid container style={{ paddingTop: 8 }}>
           <Grid
             item
             xs={6}

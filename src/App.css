@@ -93,13 +93,13 @@ a.MuiButtonBase-root.MuiListItem-root.MuiListItem-gutters.MuiListItem-button {
   margin-top: 10px;
 }
 .MuiTypography-h6 {
-  color: wheat;
+  color: rgb(255, 255, 255);
 }
 .gridA {
   background-color: rgb(2, 119, 87);
   color: rgb(255, 255, 255);
 
-  margin-top: 10px;
+  /* margin-top: 10px; */
   text-align: "center";
 }
 body {
@@ -120,11 +120,11 @@ h1 {
 } */
 @media (min-width: 780px) {
   .tt {
-    width: 50% !important;
+    width: 40% !important;
   }
   .MuiBottomNavigation-root {
     position: fixed;
-    width: 50% !important;
+    width: 40% !important;
   }
   .imgSet {
     padding-left: 10px;
@@ -162,3 +162,29 @@ h1 {
   font-size: large !important;
   font-weight: 400 !important;
 } */
+
+.incBtn {
+  background-color: rgb(253, 205, 170) !important;
+  color: white !important;
+  margin: 2px !important;
+}
+.desBtn {
+  background-color: rgb(174, 224, 174) !important;
+  margin: 2px !important;
+}
+@media (min-width: 600px) {
+  .MuiTab-root {
+    min-width: 100px !important;
+  }
+}
+
+.inpText {
+  width: 50px !important;
+  max-height: 32px !important;
+}
+.MuiOutlinedInput-multiline {
+  padding: 9px !important;
+}
+.MuiOutlinedInput-input {
+  padding: 9px !important;
+}

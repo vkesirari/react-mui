@@ -9,13 +9,13 @@ class HomeSub1 extends Component {
     liveDatas: [
       {
         id: 1,
-        details: "Indian Premier League 2020 A",
+        details: "Indian Premier League 2020",
         teamA: "/mi.png",
         teamB: "/bb.png",
       },
       {
         id: 2,
-        details: "Indian Premier League 2020 B",
+        details: "Indian Premier League 2020",
         teamA: "/bb.png",
         teamB: "/mi.png",
       },
@@ -60,13 +60,24 @@ class HomeSub1 extends Component {
                 // onClick={() => this.handleList(liveData.id)}
               >
                 <Grid item xs={4}>
-                  <img src={liveData.teamA} />
+                  <img src={liveData.teamA} style={{ width: 65, height: 65 }} />
                 </Grid>
-                <Grid item xs={4} style={{ padding: 40 }}>
-                  <Typography variant="h6">{liveData.details}</Typography>
+                <Grid
+                  item
+                  xs={4}
+                  style={{ marginTop: 10 }}
+                  style={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    width: "9rem",
+                  }}
+                >
+                  <Typography nowrap variant="h6">
+                    {liveData.details}
+                  </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                  <img src={liveData.teamB} />
+                  <img src={liveData.teamB} style={{ width: 65, height: 65 }} />
                 </Grid>
               </Grid>
             </React.Fragment>

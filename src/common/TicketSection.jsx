@@ -1,540 +1,444 @@
+import Container from "@material-ui/core/Container";
 import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  //   paper: {
-  //     padding: theme.spacing(2),
-  //     margin: "auto",
-  //     maxWidth: 500,
-  //   },
-  //   image: {
-  //     width: 128,
-  //     height: 128,
-  //   },
-  //   img: {
-  //     margin: "auto",
-  //     display: "block",
-  //     maxWidth: "100%",
-  //     maxHeight: "100%",
-  //   },
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { makeStyles } from "@material-ui/core/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import StepContent from "@material-ui/core/StepContent";
+import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import LiveTvIcon from "@material-ui/icons/LiveTv";
 
-  barcodeImg: {
-    transform: "rotate(270deg)",
-    width: "300px",
-    marginTop: "124px",
-    marginLeft: " -120px",
-    height: "62px",
-  },
-});
-class TicketSection extends Component {
-  state = {};
+export default class TicketSection extends Component {
+  state = {
+    activeStep: 0,
+    setActiveStep: 0,
+    steps: [
+      "Who Will win the Toss ?",
+      "Total Score in first Inning ?",
+      "Who will win the Match ?",
+      "Total Wicket in first Inning ?",
+    ],
+  };
+  handleOpen = (index) => {
+    let currentToggle = this.state.activeStep;
+    console.log("clickked", currentToggle, index);
+    this.setState({ activeStep: index });
+  };
+  handleNext = () => {
+    console.log("sss", this.state.activeStep);
+    let activeStep = this.state.activeStep + 1;
+    this.setState({ activeStep });
+  };
+
+  handleBack = () => {
+    let activeStep = this.state.activeStep - 1;
+    this.setState({ activeStep });
+  };
+
+  handleReset = () => {
+    this.setState({ activeStep: 0 });
+  };
+  useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+    },
+    button: {
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
+    actionsContainer: {
+      marginBottom: theme.spacing(2),
+    },
+    resetContainer: {
+      padding: theme.spacing(3),
+    },
+  }));
+
+  // getSteps() {
+  //   return [
+  //     "Who Will win the Toss ?",
+  //     "Total Score in first Inning ?",
+  //     "Who will win the Match ?",
+  //     "Total Wicket in first Inning ?",
+  //     // "Total Sixes in first Inning ?",
+  //   ];
+  // }
+  getCount = (val) => {
+    const val1 = val;
+    // console.log(val1);
+    return val1;
+  };
+  getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <Card>
+            <CardContent
+              borderColor="primary.main"
+              style={{ textAlign: "center" }}
+            >
+              <div>
+                <label htmlFor="" style={{ paddingRight: 5 }}>
+                  Team A
+                </label>
+                <Button
+                  className="desBtn"
+                  onClick={() => {
+                    this.getCount();
+                  }}
+                >
+                  -
+                </Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ paddingRight: 5 }}>
+                  Team B
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button
+                  className="incBtn"
+                  // style={{ margin: "10px 10px 10px 10px" }}
+                >
+                  +
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 1:
+        return (
+          <Card className="">
+            <CardContent style={{ textAlign: "center" }}>
+              {/* <Typography>Who Will win the Toss ?</Typography> */}
+              <div>
+                <label htmlFor="" style={{ padding: 5 }}>
+                  90-100
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  100-150
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  150-200
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 10 }}>
+                  200 +
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 2:
+        return (
+          <Card>
+            <CardContent style={{ textAlign: "center" }}>
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  Team A
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  Team B
+                </label>
+                <Button className="desBtn">-</Button>
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button
+                  className="incBtn"
+                  // style={{ margin: "10px 10px 10px 10px" }}
+                >
+                  +
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 3:
+        return (
+          <Card>
+            <CardContent style={{ textAlign: "center" }}>
+              {/* <Typography>Who Will win the Toss ?</Typography> */}
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  0-3
+                </label>
+                <Button className="desBtn">-</Button>
+
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  3-5
+                </label>
+                <Button className="desBtn">-</Button>
+
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 0 }}>
+                  5-7
+                </label>
+                <Button className="desBtn">-</Button>
+
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+              <div>
+                <label htmlFor="" style={{ padding: 2 }}>
+                  10
+                </label>
+                <Button className="desBtn">-</Button>
+
+                <TextField
+                  id="standard-number"
+                  type="number"
+                  variant="outlined"
+                  color="secondary"
+                  className="inpText"
+                />
+                <Button className="incBtn">+</Button>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 5:
+        return (
+          <Card>
+            <CardContent>
+              <div>
+                <Button>+</Button>
+                <label>0-3</label>
+                <Button>-</Button>
+                <Button>+</Button>
+                <label>3-6</label>
+                <Button>-</Button>
+                <Button>+</Button>
+                <label>6-9</label>
+                <Button>-</Button>
+                <Button>+</Button>
+                <label>9+</label>
+                <Button>-</Button>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      default:
+        return "Unknown step";
+    }
+  }
+
   render() {
-    const { classes } = this.props;
+    const { steps, activeStep } = this.state;
+    // console.log("--->", this.state.activeStep);
+
     return (
-      <React.Fragment>
-        <div
-          // className="tt"
-          style={{
-            width: "100%",
-            //  padding: 5
-          }}
-        >
-          {/* <Paper className={classes.paper}> */}
+      <div>
+        <Card>
           <Grid
             container
-
-            //  style={{ width: "50%" }}
+            style={{ textAlign: "center", backgroundColor: "rgb(33, 36, 38)" }}
           >
-            {/* col1 for row */}
-            <Grid item xs={2} container style={{ backgroundColor: "#f5f2f2" }}>
-              {/* <Typography>BarCode</Typography> */}
-              {/* <Card> */}
-              {/* <CardContent></CardContent> */}
-              <Grid item className="imgSet">
-                <img
-                  style={{ transform: "rotate(90deg)" }}
-                  src="/barcode.png"
-                  alt=""
-                  className={classes.barcodeImg}
-                />
-              </Grid>
-
-              {/* </Card> */}
-            </Grid>
-            {/* col2 for other stuff */}
             <Grid
-              item
-              xs={10}
+              style={{ cursor: "pointer", textDecoration: "none" }}
               container
-              // style={{ backgroundColor: "grey" }}
             >
-              <Grid item xs={12} container direction="row">
-                <Grid
-                  item
-                  xs={12}
-                  style={{ backgroundColor: "rgb(128 0 128)", height: "50px" }}
-                >
-                  <Grid item xs={12} container direction="row">
-                    <Grid
-                      item
-                      xs={6}
-                      style={{
-                        backgroundColor: "rgb(255 165 0)",
-                        height: "50px",
-                      }}
-                    ></Grid>
-                    <Grid
-                      item
-                      xs={6}
-                      // style={{ backgroundColor: "rgb(128 0 128)", height: "40px" }}
-                    >
-                      <Grid item xs={12} container style={{ height: "50px" }}>
-                        <Grid
-                          item
-                          xs={4}
-                          // style={{ backgroundColor: "rgb(128 0 128)", height: "40px" }}
-                        ></Grid>
-                        <Grid item xs={8}>
-                          {/* <Typography gutterBottom variant="subtitle1">
-                            TEAM STADIUM
-                          </Typography> */}
-                          {/* <div style={{ display: "flex" }}> */}
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="center"
-                          >
-                            <Typography
-                              // variant="title"
-                              className="l4"
-                              // style={{ color: "white" }}
-                              noWrap
-                            >
-                              TEAM
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="center"
-                          >
-                            <Typography
-                              // variant="title"
-                              className="l4"
-                              // style={{ color: "white" }}
-                              noWrap
-                            >
-                              STADIUM
-                            </Typography>
-                          </Grid>
-
-                          {/* </div> */}
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  {/* <Typography gutterBottom variant="subtitle1">
-                    Label 1
-                  </Typography> */}
-                </Grid>
-
-                <Grid item xs={12} container>
-                  <Grid
-                    item
-                    xs={6}
-                    container
-                    style={{ backgroundColor: "#f5f2f2", paddingLeft: "10px" }}
-                  >
-                    <Grid item xs={12} container>
-                      <Grid
-                        item
-                        xs={2}
-                        container
-                        alignItems="center"
-                        justify="center"
-                      >
-                        <Typography gutterBottom className="l5">
-                          15
-                        </Typography>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={5}
-                        container
-                        alignItems="center"
-                        justify="center"
-                        // style={{ padding: 2 }}
-                      >
-                        <Grid
-                          item
-                          xs={12}
-                          container
-                          direction="row"
-                          alignItems="center"
-                          justify="center"
-                        >
-                          <Typography
-                            // variant="title"
-                            // className="l4"
-                            // style={{ color: "white" }}
-                            noWrap
-                            className="l7"
-                          >
-                            August
-                          </Typography>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={12}
-                          container
-                          direction="row"
-                          alignItems="center"
-                          justify="center"
-                        >
-                          <Typography
-                            // variant="title"
-                            // className="l4"
-                            // style={{ color: "white" }}
-                            noWrap
-                            className="l7"
-                          >
-                            2018
-                          </Typography>
-                        </Grid>
-
-                        {/* <Typography gutterBottom className="l2">
-                          2018
-                        </Typography> */}
-                      </Grid>
-                      <Grid item xs={1} alignItems="center" container>
-                        <Typography gutterBottom className="l2">
-                          |
-                        </Typography>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={4}
-                        container
-                        alignItems="center"
-                        // justify="center"
-                      >
-                        <Typography gutterBottom className="l6">
-                          14.00
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                    <Grid
-                      item
-                      xs={12}
-                      container
-                      //  style={{ height: "120px" }}
-                    >
-                      <Grid
-                        item
-                        xs={12}
-                        container
-                        style={{
-                          backgroundColor: "lightblue",
-                          marginBottom: 5,
-                          paddingLeft: 5,
-                        }}
-                      >
-                        <Grid item xs={12} container>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              Zone
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography
-                              gutterBottom
-                              variant="subtitle1"
-                              style={{ wordWrap: "break-word" }}
-                            >
-                              : East Stand
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        container
-                        style={{
-                          backgroundColor: "#5dbddd",
-                          marginBottom: 5,
-                          paddingLeft: 5,
-                        }}
-                      >
-                        <Grid item xs={12} container>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              Seat/Row
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              : 4/5
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        container
-                        style={{
-                          backgroundColor: "lightblue",
-                          marginBottom: 5,
-                          paddingLeft: 5,
-                        }}
-                      >
-                        <Grid item xs={12} container>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              Price
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              : $100
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <Grid item xs={12} container>
-                      <Typography
-                        gutterBottom
-                        // variant="subtitle2"
-                        className="l1"
-                      >
-                        League A
-                      </Typography>
-                    </Grid>
-                  </Grid>
-
-                  <Grid
-                    item
-                    xs={6}
-                    container
-                    style={{ backgroundColor: "#f5f2f2" }}
-                  >
-                    <Grid item xs={12} container>
-                      <Grid
-                        item
-                        xs={6}
-
-                        //  style={{ backgroundColor: "red" }}
-                      >
-                        <Typography gutterBottom variant="subtitle1">
-                          img
-                        </Typography>
-                      </Grid>
-
-                      <Grid
-                        item
-                        xs={6}
-                        // style={{ backgroundColor: "pink" }}
-                      >
-                        {/* <Typography gutterBottom variant="subtitle1">
-                          det
-                        </Typography> */}
-                        <Grid
-                          item
-                          xs={12}
-                          alignItems="center"
-                          justify="center"
-                          container
-                          style={{
-                            backgroundColor: "rgb(255 165 0) ",
-                            marginTop: "8px",
-                          }}
-                        >
-                          <Typography gutterBottom className="l3">
-                            League A
-                          </Typography>
-                        </Grid>
-
-                        <Grid
-                          item
-                          xs={12}
-                          container
-                          style={{ height: "160px" }}
-                        >
-                          {/* <Typography gutterBottom variant="subtitle1">
-                            demo
-                          </Typography> */}
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            alignItems="center"
-                            justify="center"
-                            style={{ paddingTop: 20 }}
-                          >
-                            <Typography
-                              gutterBottom
-                              // variant="subtitle1"
-                              className="l2"
-                            >
-                              Adult
-                            </Typography>
-                          </Grid>
-
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            style={{ padding: 30 }}
-                            // style={{ backgroundColor: "rgb(128 0 128) " }}
-                          >
-                            <Grid
-                              item
-                              xs={12}
-                              alignItems="center"
-                              justify="center"
-                              container
-                              direction="row"
-                            >
-                              <Typography className="l2">ADMIT</Typography>
-                            </Grid>
-                            <Grid
-                              item
-                              xs={12}
-                              alignItems="center"
-                              justify="center"
-                              container
-                              direction="row"
-                            >
-                              <Typography className="l2">ONE</Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-
-                        <Grid
-                          item
-                          xs={12}
-                          container
-                          style={{
-                            backgroundColor: "rgb(128 0 128) ",
-                            marginBottom: "5px",
-                            height: "30px",
-                          }}
-                        >
-                          {/* <Typography gutterBottom variant="subtitle1">
-                            LeagueB
-                          </Typography> */}
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-
-                <Grid item xs={12} style={{ height: "25px" }}>
-                  <Grid item xs={12} container direction="row">
-                    <Grid
-                      item
-                      xs={6}
-                      style={{
-                        backgroundColor: "rgb(128 0 128)",
-                        height: "25px",
-                      }}
-                    ></Grid>
-                    <Grid
-                      item
-                      xs={6}
-                      style={{
-                        backgroundColor: "rgb(255 165 0)",
-                        height: "25px",
-                      }}
-                    ></Grid>
-                  </Grid>
-                  {/* <Typography gutterBottom variant="subtitle1">
-                    Label 2
-                  </Typography> */}
-                </Grid>
+              <Grid item xs={4}>
+                <img src="/mi.png" style={{ width: 100, height: 100 }} />
+              </Grid>
+              <Grid item xs={4} style={{ padding: 40 }}>
+                <Typography variant="h6">v/s</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <img src="/dd.png" style={{ width: 100, height: 100 }} />
               </Grid>
             </Grid>
           </Grid>
-          {/* </Paper> */}
+          {/* <Typography variant="title">Total Member live : 20</Typography> */}
+          {/* <LiveTvIcon /> : 20 */}
+        </Card>
+        <div>
+          <AppBar position="static" color="default">
+            <Tabs
+              value=""
+              //   onChange={handleChange}
+              indicatorColor="primary"
+              textColor="white"
+              style={{ backgroundColor: "#66bb6a", color: "white" }}
+              variant="scrollable"
+              scrollButtons="on"
+              aria-label="scrollable force tabs example"
+            >
+              <Tab label="WIN" />
+              <Tab label="SCORE" />
+              <Tab label="RUN" />
+              <Tab label="WICKET" />
+              {/* <Tab label="ITEM" /> */}
+            </Tabs>
+          </AppBar>
         </div>
-      </React.Fragment>
+
+        <div
+        // id="content-1"
+        // style={{ height: "100%", overflowY: "auto" }}
+        // className="pmd-scrollbar mCustomScrollbar"
+        >
+          <Stepper activeStep={activeStep} orientation="vertical">
+            {steps.map((label, index) => (
+              <Step key={label}>
+                <StepLabel
+                  style={{ cursor: "pointer" }}
+                  onClick={() => this.handleOpen(index)}
+                >
+                  {label}
+                </StepLabel>
+                <StepContent>
+                  <Typography>{this.getStepContent(index)}</Typography>
+                  <div
+                  //  className={classes.actionsContainer}
+                  >
+                    <div>
+                      <Button
+                        disabled={activeStep === 0}
+                        onClick={this.handleBack}
+                        className=""
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleNext}
+                        className=""
+                      >
+                        {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                      </Button>
+                    </div>
+                  </div>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length && (
+            <Paper
+              square
+              elevation={0}
+              //  className={classes.resetContainer}
+            >
+              <Typography>All steps completed. </Typography>
+              {/* - you&apos;re finished */}
+              <Button onClick={this.handleReset} className="">
+                Reset
+              </Button>
+            </Paper>
+          )}
+        </div>
+      </div>
     );
   }
 }
-
-export default withStyles(styles)(TicketSection);
-
-// <div style={{display:"flex"}}>
-//   <Typography variant="title" color="inherit" noWrap>
-//      Project:
-//   </Typography>
-//   <Typography variant="subheading" color="inherit" noWrap>
-//        Example
-//   </Typography>
-// </div>
+// export default CreateTicket

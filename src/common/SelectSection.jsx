@@ -10,7 +10,7 @@ class SelectSection extends Component {
     return (
       <Grid
         container
-        style={{ textAlign: "center", paddingTop: 10 }}
+        style={{ textAlign: "center", paddingTop: 0 }}
         className="gridA"
       >
         <Grid item xs={4}>
