@@ -31,15 +31,18 @@ export default class TicketSection extends Component {
       "Who will win the Match ?",
       "Total Wicket in first Inning ?",
     ],
-    countval: 0,
-    countval2: 0,
-    ticketPrice: 0,
+
     totalTicketPrice: 0,
     totalCountval: 0,
     sCorePrice: 0,
     sCoreCount: 0,
+    winPrice: 0,
+    winCount: 0,
+    tossPrice: 0,
+    tossCount: 0,
+    wicketPrice: 0,
+    wicketCount: 0,
 
-    // inputDatas: ["80 - 100", "110-150", "150-200", " 200  +  "],
     scoreData: [
       {
         id: 1,
@@ -48,8 +51,6 @@ export default class TicketSection extends Component {
         class: "scoreBtn1",
         sCount: 0,
         bTicket: 0,
-
-        // scoreCount: 0,
       },
       {
         id: 2,
@@ -76,7 +77,76 @@ export default class TicketSection extends Component {
         bTicket: 0,
       },
     ],
-
+    tossData: [
+      {
+        id: 1,
+        btn: "tBtn1",
+        score: "Team A",
+        class: "tossBtn1",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 2,
+        btn: "tBtn2",
+        score: "Team B",
+        class: "tossBtn2",
+        sCount: 0,
+        bTicket: 0,
+      },
+    ],
+    winData: [
+      {
+        id: 1,
+        btn: "wBtn1",
+        score: "Team A",
+        class: "winBtn1",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 2,
+        btn: "wBtn2",
+        score: "Team B",
+        class: "winBtn2",
+        sCount: 0,
+        bTicket: 0,
+      },
+    ],
+    wicketData: [
+      {
+        id: 1,
+        btn: "wktBtn1",
+        score: "0-3",
+        class: "wktBtn1",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 2,
+        btn: "wktBtn2",
+        score: "3-5",
+        class: "wktBtn2",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 3,
+        btn: "wktBtn3",
+        score: "5-7",
+        class: "wktBtn3",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 4,
+        btn: "wktBtn4",
+        score: "10",
+        class: "wktBtn4",
+        sCount: 0,
+        bTicket: 0,
+      },
+    ],
     open: false,
     setOpen: false,
   };
@@ -124,100 +194,57 @@ export default class TicketSection extends Component {
     },
   }));
 
-  putCountInc = (val1, val2, btn) => {
-    // console.log("-------", val1, val2, btn);
-    // return false;
-    // console.log("btnnn===", btn);
-    if (btn === "btn1") {
-      let countval = val1 + 1;
-      let countval2 = this.state.countval2;
-      const tempVal = countval2;
-      let totalTicketPrice = 100 * countval + parseInt(tempVal * 100);
-      let totalCountval = countval + tempVal;
-      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
-    } else {
-      let countval = this.state.countval;
-      const tempVal = countval;
-      let countval2 = val2 + 1;
-      let totalTicketPrice = 100 * countval2 + parseInt(tempVal * 100);
-      let totalCountval = countval2 + tempVal;
-      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
-    }
-    // let ticketPrice = 100 * countval;
-    // let totalTicketPrice = 100 * countval;
-    // let totalCountval = countval;
-    // this.setState({ totalTicketPrice, totalCountval });
+  setTossCountInc = (id, count) => {
+    const oldData = this.state.tossData;
+    const tossData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: ++count, bTicket: count * 100 }
+        : oData
+    );
+    let tossPrice = 0;
+    tossData.map((oData) => (tossPrice = tossPrice + oData.bTicket));
+    let tossCount = tossPrice / 100;
+    this.setState({
+      tossData,
+      tossPrice,
+      tossCount,
+    });
+  };
+  setTossCountDes = (id, count) => {
+    const oldData = this.state.tossData;
+    const tossData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: count <= 0 ? 0 : --count, bTicket: count * 100 }
+        : oData
+    );
+    let tossPrice = 0;
+    tossData.map((oData) => (tossPrice = tossPrice + oData.bTicket));
+    let tossCount = tossPrice / 100;
+    this.setState({
+      tossData,
+      tossPrice,
+      tossCount,
+    });
+  };
 
-    // if (btn === "btn1") {
-    //   let countval = val + 1;
-    //   let totalTicketPrice = 100 * countval;
-    //   let totalCountval = countval;
-    //   this.setState({ totalTicketPrice, totalCountval, countval });
-    // } else {
-    //   let countval = 0;
-    //   let totalTicketPrice = this.state.totalTicketPrice;
-    //   let totalCountval = this.state.totalCountval;
-    //   this.setState({ totalTicketPrice, totalCountval, countval });
-    // }
+  handleTossChange = (e, id) => {
+    console.log(e.target.value);
+    let changeVal = parseInt(e.target.value);
+    const oldData = this.state.tossData;
+    const tossData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: changeVal, bTicket: changeVal * 100 }
+        : oData
+    );
+    let tossPrice = 0;
+    tossData.map((oData) => (tossPrice = tossPrice + oData.bTicket));
+    let tossCount = tossPrice / 100;
+    this.setState({
+      tossData,
+      tossPrice,
+      tossCount,
+    });
   };
-  putCountDes = (val1, val2, btn) => {
-    // let countval = val <= 0 ? 0 : val - 1;
-    // let ticketPrice = 100 * countval;
-    // this.setState({ countval, ticketPrice });
-
-    if (btn === "btn1") {
-      let countval = val1 <= 0 ? 0 : val1 - 1;
-      let countval2 = this.state.countval2;
-      const tempVal = countval2;
-      let totalTicketPrice = 100 * countval + parseInt(tempVal * 100);
-      let totalCountval = countval + tempVal;
-      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
-    } else {
-      let countval = this.state.countval;
-      const tempVal = countval;
-      let countval2 = val2 <= 0 ? 0 : val2 - 1;
-      let totalTicketPrice = 100 * countval2 + parseInt(tempVal * 100);
-      let totalCountval = countval2 + tempVal;
-      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
-    }
-  };
-  handleChange = (e, val2, btn) => {
-    // alert(btn);
-    // let countval = parseInt(e.target.value);
-    // let ticketPrice = 100 * countval;
-    // this.setState({ countval, ticketPrice });
-    if (btn === "btn1") {
-      let countval = parseInt(e.target.value);
-      let countval2 = this.state.countval2;
-      const tempVal = countval2;
-      let totalTicketPrice = 100 * countval + parseInt(tempVal * 100);
-      let totalCountval = countval + tempVal;
-      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
-    } else {
-      let countval = this.state.countval;
-      const tempVal = countval;
-      let countval2 = parseInt(e.target.value);
-      let totalTicketPrice = 100 * countval2 + parseInt(tempVal * 100);
-      let totalCountval = countval2 + tempVal;
-      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
-    }
-  };
-  //2 btn
-  // putCountInc2 = (val) => {
-  //   let countval2 = val + 1;
-  //   let ticketPrice2 = 100 * countval2;
-  //   this.setState({ countval2, ticketPrice2 });
-  // };
-  // putCountDes2 = (val) => {
-  //   let countval2 = val <= 0 ? 0 : val - 1;
-  //   let ticketPrice2 = 100 * countval2;
-  //   this.setState({ countval2, ticketPrice2 });
-  // };
-  // handleChange2 = (e) => {
-  //   let countval2 = parseInt(e.target.value);
-  //   let ticketPrice2 = 100 * countval2;
-  //   this.setState({ countval2, ticketPrice2 });
-  // };
 
   putMultiCountInc = (id, count) => {
     console.log("lets do it", id, count);
@@ -227,23 +254,157 @@ export default class TicketSection extends Component {
         ? { ...oData, sCount: ++count, bTicket: count * 100 }
         : oData
     );
-    // scoreData.sCount = count + 1;
     let sCorePrice = 0;
     scoreData.map((oData) => (sCorePrice = sCorePrice + oData.bTicket));
-    // console.log("temp", temp);
     let sCoreCount = sCorePrice / 100;
-    // let tempTc = this.state.totalTicketPrice;
-    // let tempCn = this.state.totalCountval;
-    // let totalTicketPrice = tempTc + sCorePrice;
-    // let totalCountval = tempCn + sCoreCount;
+
     this.setState({
       scoreData,
       sCorePrice,
       sCoreCount,
-      // totalTicketPrice,
-      // totalCountval,
     });
-    // this.state.totalTicketPrice
+  };
+  putMultiCountDes = (id, count) => {
+    const oldData = this.state.scoreData;
+    const scoreData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: count <= 0 ? 0 : --count, bTicket: count * 100 }
+        : oData
+    );
+    let sCorePrice = 0;
+    scoreData.map((oData) => (sCorePrice = sCorePrice + oData.bTicket));
+    let sCoreCount = sCorePrice / 100;
+
+    this.setState({
+      scoreData,
+      sCorePrice,
+      sCoreCount,
+    });
+  };
+
+  handleMultiChange = (e, id) => {
+    console.log(e.target.value);
+    let changeVal = parseInt(e.target.value);
+    const oldData = this.state.scoreData;
+    const scoreData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: changeVal, bTicket: changeVal * 100 }
+        : oData
+    );
+    let sCorePrice = 0;
+    scoreData.map((oData) => (sCorePrice = sCorePrice + oData.bTicket));
+    let sCoreCount = sCorePrice / 100;
+
+    this.setState({
+      scoreData,
+      sCorePrice,
+      sCoreCount,
+    });
+  };
+  setWinCountInc = (id, count) => {
+    const oldData = this.state.winData;
+    const winData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: ++count, bTicket: count * 100 }
+        : oData
+    );
+    let winPrice = 0;
+    winData.map((oData) => (winPrice = winPrice + oData.bTicket));
+    let winCount = winPrice / 100;
+    this.setState({
+      winData,
+      winPrice,
+      winCount,
+    });
+  };
+  setWinCountDes = (id, count) => {
+    const oldData = this.state.winData;
+    const winData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: count <= 0 ? 0 : --count, bTicket: count * 100 }
+        : oData
+    );
+    let winPrice = 0;
+    winData.map((oData) => (winPrice = winPrice + oData.bTicket));
+    let winCount = winPrice / 100;
+
+    this.setState({
+      winData,
+      winPrice,
+      winCount,
+    });
+  };
+
+  handleWinChange = (e, id) => {
+    console.log(e.target.value);
+    let changeVal = parseInt(e.target.value);
+    const oldData = this.state.winData;
+    const winData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: changeVal, bTicket: changeVal * 100 }
+        : oData
+    );
+    let winPrice = 0;
+    winData.map((oData) => (winPrice = winPrice + oData.bTicket));
+    let winCount = winPrice / 100;
+    this.setState({
+      winData,
+      winPrice,
+      winCount,
+    });
+  };
+  setWicketCountInc = (id, count) => {
+    const oldData = this.state.wicketData;
+    const wicketData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: ++count, bTicket: count * 100 }
+        : oData
+    );
+    let wicketPrice = 0;
+    wicketData.map((oData) => (wicketPrice = wicketPrice + oData.bTicket));
+    let wicketCount = wicketPrice / 100;
+
+    this.setState({
+      wicketData,
+      wicketPrice,
+      wicketCount,
+    });
+  };
+  setWicketCountDes = (id, count) => {
+    const oldData = this.state.wicketData;
+    const wicketData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: count <= 0 ? 0 : --count, bTicket: count * 100 }
+        : oData
+    );
+    let wicketPrice = 0;
+    wicketData.map((oData) => (wicketPrice = wicketPrice + oData.bTicket));
+    let wicketCount = wicketPrice / 100;
+
+    this.setState({
+      wicketData,
+      wicketPrice,
+      wicketCount,
+    });
+  };
+
+  handleWicketChange = (e, id) => {
+    console.log(e.target.value);
+    let changeVal = parseInt(e.target.value);
+    const oldData = this.state.wicketData;
+    const wicketData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: changeVal, bTicket: changeVal * 100 }
+        : oData
+    );
+    let wicketPrice = 0;
+    wicketData.map((oData) => (wicketPrice = wicketPrice + oData.bTicket));
+    let wicketCount = wicketPrice / 100;
+    this.setState({
+      wicketData,
+      wicketPrice,
+      wicketCount,
+    });
   };
   getStepContent(step) {
     switch (step) {
@@ -254,95 +415,44 @@ export default class TicketSection extends Component {
               borderColor="primary.main"
               style={{ textAlign: "center" }}
             >
-              <div>
-                <label htmlFor="" style={{ paddingRight: 5 }}>
-                  Team A
-                </label>
-                <Button
-                  className="desBtn"
-                  onClick={() => {
-                    this.putCountDes(
-                      this.state.countval,
-                      this.state.countval2,
-                      "btn1"
-                    );
-                  }}
-                >
-                  -
-                </Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                  value={this.state.countval}
-                  onChange={(val, val2) =>
-                    this.handleChange(val, this.state.countval2, "btn1")
-                  }
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <Button
-                  className="incBtn"
-                  onClick={() => {
-                    this.putCountInc(
-                      this.state.countval,
-                      this.state.countval2,
-                      "btn1"
-                    );
-                  }}
-                >
-                  +
-                </Button>
-              </div>
-
-              <div>
-                <label htmlFor="" style={{ paddingRight: 5 }}>
-                  Team B
-                </label>
-                <Button
-                  className="desBtn"
-                  onClick={() => {
-                    this.putCountDes(
-                      this.state.countval,
-                      this.state.countval2,
-                      "btn2"
-                    );
-                  }}
-                >
-                  -
-                </Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  value={this.state.countval2}
-                  onChange={(val) => this.handleChange(val)}
-                  className="inpText"
-                />
-                <Button
-                  className="incBtn"
-                  onClick={() => {
-                    this.putCountInc(
-                      this.state.countval,
-                      this.state.countval2,
-                      "btn2"
-                    );
-                  }}
-                  // style={{ margin: "10px 10px 10px 10px" }}
-                >
-                  +
-                </Button>
-              </div>
+              {this.state.tossData.map((data) => (
+                <div>
+                  <label htmlFor="" style={{ padding: 0 }}>
+                    {data.score}
+                  </label>
+                  <Button
+                    className="desBtn"
+                    onClick={() => {
+                      this.setTossCountDes(data.id, data.sCount);
+                    }}
+                  >
+                    -
+                  </Button>
+                  <TextField
+                    id="standard-number"
+                    type="number"
+                    variant="outlined"
+                    color="secondary"
+                    value={data.sCount}
+                    onChange={(val, id) => this.handleTossChange(val, data.id)}
+                    Inpu
+                    className="inpText"
+                  />
+                  <Button
+                    className="incBtn"
+                    onClick={() => {
+                      this.setTossCountInc(data.id, data.sCount);
+                    }}
+                  >
+                    +
+                  </Button>
+                </div>
+              ))}
               <Divider />
-
               <div style={{ paddingTop: 8 }}>
                 <label>
-                  Price : 100₹ * Qty : {this.state.totalCountval} ={" "}
-                  {this.state.totalTicketPrice}₹
+                  Price : ₹100 Qty : {this.state.tossCount} = ₹
+                  {this.state.tossPrice}
                 </label>
               </div>
               {/* <div>
@@ -364,30 +474,47 @@ export default class TicketSection extends Component {
         return (
           <Card className="">
             <CardContent style={{ textAlign: "center" }}>
-              {this.state.scoreData.map((score) => (
+              {this.state.scoreData.map((data) => (
                 <div>
-                  <label htmlFor="" style={{ padding: 0 }}>
-                    {score.score}
+                  <label
+                    htmlFor=""
+                    className={data.class}
+                    style={{ padding: 0 }}
+                  >
+                    {data.score}
                   </label>
-                  <Button className="desBtn">-</Button>
+                  <Button
+                    className="desBtn"
+                    onClick={() => {
+                      this.putMultiCountDes(data.id, data.sCount);
+                    }}
+                  >
+                    -
+                  </Button>
                   <TextField
                     id="standard-number"
                     type="number"
                     variant="outlined"
                     color="secondary"
-                    value={score.sCount}
+                    value={data.sCount}
+                    onChange={(val, id, count) =>
+                      this.handleMultiChange(val, data.id, data.sCount)
+                    }
+                    Inpu
                     className="inpText"
                   />
                   <Button
                     className="incBtn"
                     onClick={() => {
-                      this.putMultiCountInc(score.id, score.sCount);
+                      this.putMultiCountInc(data.id, data.sCount);
                     }}
                   >
                     +
                   </Button>
                 </div>
               ))}
+              <Divider />
+
               <div style={{ paddingTop: 8 }}>
                 <label>
                   Price : ₹100 Qty : {this.state.sCoreCount} = ₹
@@ -401,38 +528,46 @@ export default class TicketSection extends Component {
         return (
           <Card>
             <CardContent style={{ textAlign: "center" }}>
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  Team A
+              {this.state.winData.map((data) => (
+                <div>
+                  <label htmlFor="" style={{ padding: 0 }}>
+                    {data.score}
+                  </label>
+                  <Button
+                    className="desBtn"
+                    onClick={() => {
+                      this.setWinCountDes(data.id, data.sCount);
+                    }}
+                  >
+                    -
+                  </Button>
+                  <TextField
+                    id="standard-number"
+                    type="number"
+                    variant="outlined"
+                    color="secondary"
+                    value={data.sCount}
+                    onChange={(val, id) => this.handleWinChange(val, data.id)}
+                    Inpu
+                    className="inpText"
+                  />
+                  <Button
+                    className="incBtn"
+                    onClick={() => {
+                      this.setWinCountInc(data.id, data.sCount);
+                    }}
+                  >
+                    +
+                  </Button>
+                </div>
+              ))}
+              <Divider />
+
+              <div style={{ paddingTop: 8 }}>
+                <label>
+                  Price : ₹100 Qty : {this.state.winCount} = ₹
+                  {this.state.winPrice}
                 </label>
-                <Button className="desBtn">-</Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  Team B
-                </label>
-                <Button className="desBtn">-</Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button
-                  className="incBtn"
-                  // style={{ margin: "10px 10px 10px 10px" }}
-                >
-                  +
-                </Button>
               </div>
             </CardContent>
           </Card>
@@ -441,91 +576,53 @@ export default class TicketSection extends Component {
         return (
           <Card>
             <CardContent style={{ textAlign: "center" }}>
-              {/* <Typography>Who Will win the Toss ?</Typography> */}
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  0-3
-                </label>
-                <Button className="desBtn">-</Button>
+              {this.state.wicketData.map((score) => (
+                <div>
+                  <label htmlFor="" className={score.class}>
+                    {score.score}
+                  </label>
+                  <Button
+                    className="desBtn"
+                    onClick={() => {
+                      this.setWicketCountDes(score.id, score.sCount);
+                    }}
+                  >
+                    -
+                  </Button>
+                  <TextField
+                    id="standard-number"
+                    type="number"
+                    variant="outlined"
+                    color="secondary"
+                    value={score.sCount}
+                    onChange={(val, id, count) =>
+                      this.handleWicketChange(val, score.id, score.sCount)
+                    }
+                    Inpu
+                    className="inpText"
+                  />
+                  <Button
+                    className="incBtn"
+                    onClick={() => {
+                      this.setWicketCountInc(score.id, score.sCount);
+                    }}
+                  >
+                    +
+                  </Button>
+                </div>
+              ))}
+              <Divider />
 
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  3-5
+              <div style={{ paddingTop: 8 }}>
+                <label>
+                  Price : ₹100 Qty : {this.state.wicketCount} = ₹
+                  {this.state.wicketPrice}
                 </label>
-                <Button className="desBtn">-</Button>
-
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  5-7
-                </label>
-                <Button className="desBtn">-</Button>
-
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 2 }}>
-                  10
-                </label>
-                <Button className="desBtn">-</Button>
-
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
               </div>
             </CardContent>
           </Card>
         );
-      case 5:
-        return (
-          <Card>
-            <CardContent>
-              <div>
-                <Button>+</Button>
-                <label>0-3</label>
-                <Button>-</Button>
-                <Button>+</Button>
-                <label>3-6</label>
-                <Button>-</Button>
-                <Button>+</Button>
-                <label>6-9</label>
-                <Button>-</Button>
-                <Button>+</Button>
-                <label>9+</label>
-                <Button>-</Button>
-              </div>
-            </CardContent>
-          </Card>
-        );
+
       default:
         return "Unknown step";
     }
@@ -649,7 +746,11 @@ export default class TicketSection extends Component {
               to="/home/live/payment/1"
               style={{ backgroundColor: "rgb(2, 119, 87)", color: "white" }}
             >
-              Click here to Pay {this.state.totalTicketPrice}₹
+              Click here to Pay ₹
+              {this.state.tossPrice +
+                this.state.sCorePrice +
+                this.state.wicketPrice +
+                this.state.winPrice}
             </Button>
             {/* </Paper> */}
           </div>

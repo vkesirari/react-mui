@@ -197,3 +197,13 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.scoreBtn1 {
+  padding-right: 8px !important;
+}
+.scoreBtn4 {
+  padding-right: 20px !important;
+}
+.wktBtn4 {
+  padding-right: 8px !important;
+}
