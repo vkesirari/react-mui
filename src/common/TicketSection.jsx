@@ -29,6 +29,7 @@ export default class TicketSection extends Component {
       "Who will win the Match ?",
       "Total Wicket in first Inning ?",
     ],
+    countval: 0,
   };
   handleOpen = (index) => {
     let currentToggle = this.state.activeStep;
@@ -74,10 +75,17 @@ export default class TicketSection extends Component {
   //     // "Total Sixes in first Inning ?",
   //   ];
   // }
-  getCount = (val) => {
-    const val1 = val;
-    // console.log(val1);
-    return val1;
+  putCountInc = (val) => {
+    let countval = val + 1;
+    this.setState({ countval });
+  };
+  putCountDes = (val) => {
+    let countval = val <= 0 ? 0 : val - 1;
+    this.setState({ countval });
+  };
+  handleChange = (e) => {
+    let countval = parseInt(e.target.value);
+    this.setState({ countval });
   };
   getStepContent(step) {
     switch (step) {
@@ -95,7 +103,7 @@ export default class TicketSection extends Component {
                 <Button
                   className="desBtn"
                   onClick={() => {
-                    this.getCount();
+                    this.putCountDes(this.state.countval);
                   }}
                 >
                   -
@@ -106,11 +114,20 @@ export default class TicketSection extends Component {
                   variant="outlined"
                   color="secondary"
                   className="inpText"
+                  // value={this.state.countval}
+                  onChange={(val) => this.handleChange(val)}
                   InputLabelProps={{
                     shrink: true,
                   }}
                 />
-                <Button className="incBtn">+</Button>
+                <Button
+                  className="incBtn"
+                  onClick={() => {
+                    this.putCountInc(this.state.countval);
+                  }}
+                >
+                  +
+                </Button>
               </div>
               <div>
                 <label htmlFor="" style={{ paddingRight: 5 }}>
@@ -368,7 +385,10 @@ export default class TicketSection extends Component {
               //   onChange={handleChange}
               indicatorColor="primary"
               textColor="white"
-              style={{ backgroundColor: "#66bb6a", color: "white" }}
+              style={{
+                backgroundColor: "rgb(2, 119, 87)",
+                color: "white",
+              }}
               variant="scrollable"
               scrollButtons="on"
               aria-label="scrollable force tabs example"
@@ -401,7 +421,7 @@ export default class TicketSection extends Component {
                   <div
                   //  className={classes.actionsContainer}
                   >
-                    <div>
+                    <div style={{ paddingTop: 10 }}>
                       <Button
                         disabled={activeStep === 0}
                         onClick={this.handleBack}
@@ -427,6 +447,7 @@ export default class TicketSection extends Component {
             <Paper
               square
               elevation={0}
+              style={{ textAlign: "center" }}
               //  className={classes.resetContainer}
             >
               <Typography>All steps completed. </Typography>

@@ -10,14 +10,14 @@ class HomeSub1 extends Component {
       {
         id: 1,
         details: "Indian Premier League 2020",
-        teamA: "/mi.png",
-        teamB: "/bb.png",
+        teamA: "/bb.png",
+        teamB: "/mi.png",
       },
       {
         id: 2,
         details: "Indian Premier League 2020",
-        teamA: "/bb.png",
-        teamB: "/mi.png",
+        teamA: "/mi.png",
+        teamB: "/bb.png",
       },
       // {
       //   id: 3,
@@ -65,14 +65,14 @@ class HomeSub1 extends Component {
                 <Grid
                   item
                   xs={4}
-                  style={{ marginTop: 10 }}
+                  // style={{ marginTop: 30 }}
                   style={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     width: "9rem",
                   }}
                 >
-                  <Typography nowrap variant="h6">
+                  <Typography nowrap style={{ color: "white", marginTop: 15 }}>
                     {liveData.details}
                   </Typography>
                 </Grid>

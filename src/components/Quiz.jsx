@@ -11,10 +11,10 @@ class Quiz extends Component {
       <React.Fragment>
         <ButtonSection linkAc={this.props.match.path} />
         <div style={{ textAlign: "center", padding: 20 }}>
-          <img src="/noquiz.png" style={{ width: 300 }} />
           <Typography variant="h5" style={{ padding: 20 }}>
             Please login first for playing Quiz.
           </Typography>
+          <img src="/noquiz.png" style={{ width: 300, height: 300 }} />
         </div>
       </React.Fragment>
     );
