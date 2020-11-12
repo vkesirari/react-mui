@@ -30,7 +30,7 @@ const styles = (theme) => ({
     height: "62px",
   },
 });
-class TicketSection extends Component {
+class Ticket extends Component {
   state = {};
   render() {
     const { classes } = this.props;
@@ -528,7 +528,7 @@ class TicketSection extends Component {
   }
 }
 
-export default withStyles(styles)(TicketSection);
+export default withStyles(styles)(Ticket);
 
 // <div style={{display:"flex"}}>
 //   <Typography variant="title" color="inherit" noWrap>

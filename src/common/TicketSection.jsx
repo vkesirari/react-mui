@@ -17,8 +17,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import LiveTvIcon from "@material-ui/icons/LiveTv";
-
+import { Link } from "react-router-dom";
+import Divider from "@material-ui/core/Divider";
+import Modal from "@material-ui/core/Modal";
+import Ticket from "../common/Ticket";
 export default class TicketSection extends Component {
   state = {
     activeStep: 0,
@@ -30,6 +32,53 @@ export default class TicketSection extends Component {
       "Total Wicket in first Inning ?",
     ],
     countval: 0,
+    countval2: 0,
+    ticketPrice: 0,
+    totalTicketPrice: 0,
+    totalCountval: 0,
+    sCorePrice: 0,
+    sCoreCount: 0,
+
+    // inputDatas: ["80 - 100", "110-150", "150-200", " 200  +  "],
+    scoreData: [
+      {
+        id: 1,
+        btn: "sBtn1",
+        score: "80-100",
+        class: "scoreBtn1",
+        sCount: 0,
+        bTicket: 0,
+
+        // scoreCount: 0,
+      },
+      {
+        id: 2,
+        btn: "sBtn2",
+        score: "100-150",
+        class: "scoreBtn2",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 3,
+        btn: "sBtn3",
+        score: "150-200",
+        class: "scoreBtn3",
+        sCount: 0,
+        bTicket: 0,
+      },
+      {
+        id: 4,
+        btn: "sBtn4",
+        score: "200+",
+        class: "scoreBtn4",
+        sCount: 0,
+        bTicket: 0,
+      },
+    ],
+
+    open: false,
+    setOpen: false,
   };
   handleOpen = (index) => {
     let currentToggle = this.state.activeStep;
@@ -50,6 +99,15 @@ export default class TicketSection extends Component {
   handleReset = () => {
     this.setState({ activeStep: 0 });
   };
+  // handleOpenModel = () => {
+  //   // setOpen(true);
+  //   this.setState({ setOpen: true });
+  // };
+
+  // handleClose = () => {
+  //   // setOpen(false);
+  //   this.setState({ setOpen: false });
+  // };
   useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -66,26 +124,126 @@ export default class TicketSection extends Component {
     },
   }));
 
-  // getSteps() {
-  //   return [
-  //     "Who Will win the Toss ?",
-  //     "Total Score in first Inning ?",
-  //     "Who will win the Match ?",
-  //     "Total Wicket in first Inning ?",
-  //     // "Total Sixes in first Inning ?",
-  //   ];
-  // }
-  putCountInc = (val) => {
-    let countval = val + 1;
-    this.setState({ countval });
+  putCountInc = (val1, val2, btn) => {
+    // console.log("-------", val1, val2, btn);
+    // return false;
+    // console.log("btnnn===", btn);
+    if (btn === "btn1") {
+      let countval = val1 + 1;
+      let countval2 = this.state.countval2;
+      const tempVal = countval2;
+      let totalTicketPrice = 100 * countval + parseInt(tempVal * 100);
+      let totalCountval = countval + tempVal;
+      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
+    } else {
+      let countval = this.state.countval;
+      const tempVal = countval;
+      let countval2 = val2 + 1;
+      let totalTicketPrice = 100 * countval2 + parseInt(tempVal * 100);
+      let totalCountval = countval2 + tempVal;
+      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
+    }
+    // let ticketPrice = 100 * countval;
+    // let totalTicketPrice = 100 * countval;
+    // let totalCountval = countval;
+    // this.setState({ totalTicketPrice, totalCountval });
+
+    // if (btn === "btn1") {
+    //   let countval = val + 1;
+    //   let totalTicketPrice = 100 * countval;
+    //   let totalCountval = countval;
+    //   this.setState({ totalTicketPrice, totalCountval, countval });
+    // } else {
+    //   let countval = 0;
+    //   let totalTicketPrice = this.state.totalTicketPrice;
+    //   let totalCountval = this.state.totalCountval;
+    //   this.setState({ totalTicketPrice, totalCountval, countval });
+    // }
   };
-  putCountDes = (val) => {
-    let countval = val <= 0 ? 0 : val - 1;
-    this.setState({ countval });
+  putCountDes = (val1, val2, btn) => {
+    // let countval = val <= 0 ? 0 : val - 1;
+    // let ticketPrice = 100 * countval;
+    // this.setState({ countval, ticketPrice });
+
+    if (btn === "btn1") {
+      let countval = val1 <= 0 ? 0 : val1 - 1;
+      let countval2 = this.state.countval2;
+      const tempVal = countval2;
+      let totalTicketPrice = 100 * countval + parseInt(tempVal * 100);
+      let totalCountval = countval + tempVal;
+      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
+    } else {
+      let countval = this.state.countval;
+      const tempVal = countval;
+      let countval2 = val2 <= 0 ? 0 : val2 - 1;
+      let totalTicketPrice = 100 * countval2 + parseInt(tempVal * 100);
+      let totalCountval = countval2 + tempVal;
+      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
+    }
   };
-  handleChange = (e) => {
-    let countval = parseInt(e.target.value);
-    this.setState({ countval });
+  handleChange = (e, val2, btn) => {
+    // alert(btn);
+    // let countval = parseInt(e.target.value);
+    // let ticketPrice = 100 * countval;
+    // this.setState({ countval, ticketPrice });
+    if (btn === "btn1") {
+      let countval = parseInt(e.target.value);
+      let countval2 = this.state.countval2;
+      const tempVal = countval2;
+      let totalTicketPrice = 100 * countval + parseInt(tempVal * 100);
+      let totalCountval = countval + tempVal;
+      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
+    } else {
+      let countval = this.state.countval;
+      const tempVal = countval;
+      let countval2 = parseInt(e.target.value);
+      let totalTicketPrice = 100 * countval2 + parseInt(tempVal * 100);
+      let totalCountval = countval2 + tempVal;
+      this.setState({ totalTicketPrice, totalCountval, countval, countval2 });
+    }
+  };
+  //2 btn
+  // putCountInc2 = (val) => {
+  //   let countval2 = val + 1;
+  //   let ticketPrice2 = 100 * countval2;
+  //   this.setState({ countval2, ticketPrice2 });
+  // };
+  // putCountDes2 = (val) => {
+  //   let countval2 = val <= 0 ? 0 : val - 1;
+  //   let ticketPrice2 = 100 * countval2;
+  //   this.setState({ countval2, ticketPrice2 });
+  // };
+  // handleChange2 = (e) => {
+  //   let countval2 = parseInt(e.target.value);
+  //   let ticketPrice2 = 100 * countval2;
+  //   this.setState({ countval2, ticketPrice2 });
+  // };
+
+  putMultiCountInc = (id, count) => {
+    console.log("lets do it", id, count);
+    const oldData = this.state.scoreData;
+    const scoreData = oldData.map((oData) =>
+      oData.id === id
+        ? { ...oData, sCount: ++count, bTicket: count * 100 }
+        : oData
+    );
+    // scoreData.sCount = count + 1;
+    let sCorePrice = 0;
+    scoreData.map((oData) => (sCorePrice = sCorePrice + oData.bTicket));
+    // console.log("temp", temp);
+    let sCoreCount = sCorePrice / 100;
+    // let tempTc = this.state.totalTicketPrice;
+    // let tempCn = this.state.totalCountval;
+    // let totalTicketPrice = tempTc + sCorePrice;
+    // let totalCountval = tempCn + sCoreCount;
+    this.setState({
+      scoreData,
+      sCorePrice,
+      sCoreCount,
+      // totalTicketPrice,
+      // totalCountval,
+    });
+    // this.state.totalTicketPrice
   };
   getStepContent(step) {
     switch (step) {
@@ -103,7 +261,11 @@ export default class TicketSection extends Component {
                 <Button
                   className="desBtn"
                   onClick={() => {
-                    this.putCountDes(this.state.countval);
+                    this.putCountDes(
+                      this.state.countval,
+                      this.state.countval2,
+                      "btn1"
+                    );
                   }}
                 >
                   -
@@ -114,8 +276,10 @@ export default class TicketSection extends Component {
                   variant="outlined"
                   color="secondary"
                   className="inpText"
-                  // value={this.state.countval}
-                  onChange={(val) => this.handleChange(val)}
+                  value={this.state.countval}
+                  onChange={(val, val2) =>
+                    this.handleChange(val, this.state.countval2, "btn1")
+                  }
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -123,31 +287,76 @@ export default class TicketSection extends Component {
                 <Button
                   className="incBtn"
                   onClick={() => {
-                    this.putCountInc(this.state.countval);
+                    this.putCountInc(
+                      this.state.countval,
+                      this.state.countval2,
+                      "btn1"
+                    );
                   }}
                 >
                   +
                 </Button>
               </div>
+
               <div>
                 <label htmlFor="" style={{ paddingRight: 5 }}>
                   Team B
                 </label>
-                <Button className="desBtn">-</Button>
+                <Button
+                  className="desBtn"
+                  onClick={() => {
+                    this.putCountDes(
+                      this.state.countval,
+                      this.state.countval2,
+                      "btn2"
+                    );
+                  }}
+                >
+                  -
+                </Button>
                 <TextField
                   id="standard-number"
                   type="number"
                   variant="outlined"
                   color="secondary"
+                  value={this.state.countval2}
+                  onChange={(val) => this.handleChange(val)}
                   className="inpText"
                 />
                 <Button
                   className="incBtn"
+                  onClick={() => {
+                    this.putCountInc(
+                      this.state.countval,
+                      this.state.countval2,
+                      "btn2"
+                    );
+                  }}
                   // style={{ margin: "10px 10px 10px 10px" }}
                 >
                   +
                 </Button>
               </div>
+              <Divider />
+
+              <div style={{ paddingTop: 8 }}>
+                <label>
+                  Price : 100₹ * Qty : {this.state.totalCountval} ={" "}
+                  {this.state.totalTicketPrice}₹
+                </label>
+              </div>
+              {/* <div>
+                <Modal
+                  open={this.state.setOpen}
+                  onClose={this.handleClose}
+                  aria-labelledby="simple-modal-title"
+                  aria-describedby="simple-modal-description"
+                >
+                  <h2 style={{ textAlign: "center", color: "white" }}>
+                    Simple React Modal
+                  </h2>
+                </Modal>
+              </div> */}
             </CardContent>
           </Card>
         );
@@ -155,62 +364,35 @@ export default class TicketSection extends Component {
         return (
           <Card className="">
             <CardContent style={{ textAlign: "center" }}>
-              {/* <Typography>Who Will win the Toss ?</Typography> */}
-              <div>
-                <label htmlFor="" style={{ padding: 5 }}>
-                  90-100
+              {this.state.scoreData.map((score) => (
+                <div>
+                  <label htmlFor="" style={{ padding: 0 }}>
+                    {score.score}
+                  </label>
+                  <Button className="desBtn">-</Button>
+                  <TextField
+                    id="standard-number"
+                    type="number"
+                    variant="outlined"
+                    color="secondary"
+                    value={score.sCount}
+                    className="inpText"
+                  />
+                  <Button
+                    className="incBtn"
+                    onClick={() => {
+                      this.putMultiCountInc(score.id, score.sCount);
+                    }}
+                  >
+                    +
+                  </Button>
+                </div>
+              ))}
+              <div style={{ paddingTop: 8 }}>
+                <label>
+                  Price : ₹100 Qty : {this.state.sCoreCount} = ₹
+                  {this.state.sCorePrice}
                 </label>
-                <Button className="desBtn">-</Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  100-150
-                </label>
-                <Button className="desBtn">-</Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 0 }}>
-                  150-200
-                </label>
-                <Button className="desBtn">-</Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
-              </div>
-              <div>
-                <label htmlFor="" style={{ padding: 10 }}>
-                  200 +
-                </label>
-                <Button className="desBtn">-</Button>
-                <TextField
-                  id="standard-number"
-                  type="number"
-                  variant="outlined"
-                  color="secondary"
-                  className="inpText"
-                />
-                <Button className="incBtn">+</Button>
               </div>
             </CardContent>
           </Card>
@@ -351,7 +533,7 @@ export default class TicketSection extends Component {
 
   render() {
     const { steps, activeStep } = this.state;
-    // console.log("--->", this.state.activeStep);
+    // console.log("--->", inputDatas);
 
     return (
       <div>
@@ -404,7 +586,7 @@ export default class TicketSection extends Component {
 
         <div
         // id="content-1"
-        // style={{ height: "100%", overflowY: "auto" }}
+        // style={{ height: "460px", overflowY: "auto" }}
         // className="pmd-scrollbar mCustomScrollbar"
         >
           <Stepper activeStep={activeStep} orientation="vertical">
@@ -437,6 +619,9 @@ export default class TicketSection extends Component {
                       >
                         {activeStep === steps.length - 1 ? "Finish" : "Next"}
                       </Button>
+                      <Button onClick={this.handleOpenModel}>
+                        View Ticket
+                      </Button>
                     </div>
                   </div>
                 </StepContent>
@@ -457,6 +642,17 @@ export default class TicketSection extends Component {
               </Button>
             </Paper>
           )}
+          <div style={{ textAlign: "center", marginTop: 15 }}>
+            {/* <Paper square style={{ textAlign: "center" }}> */}
+            <Button
+              component={Link}
+              to="/home/live/payment/1"
+              style={{ backgroundColor: "rgb(2, 119, 87)", color: "white" }}
+            >
+              Click here to Pay {this.state.totalTicketPrice}₹
+            </Button>
+            {/* </Paper> */}
+          </div>
         </div>
       </div>
     );

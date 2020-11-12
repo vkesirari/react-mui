@@ -23,6 +23,9 @@ class BottomAppBar extends Component {
           style={{ top: "auto", bottom: 0 }}
         >
           <Toolbar> */}
+        {/* <Grid container>
+            <Grid item xs={12} ></Grid>
+            /</Grid> */}
         <BottomNavigation
         // color="primary"
         // syle={{ width: 500, color: "rgb(238, 47, 76)" }}

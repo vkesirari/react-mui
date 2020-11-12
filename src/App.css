@@ -70,11 +70,12 @@
 
 .MuiAppBar-colorPrimary {
   background-color: rgb(238, 47, 76) !important;
+  /* position: fixed !important; */
 }
 .MuiBottomNavigation-root {
   bottom: 0 !important;
-  position: fixed;
-  width: 100%;
+  /* position: fixed; */
+  /* width: 100%; */
   background-color: rgb(238, 47, 76) !important;
 }
 .MuiBottomNavigationAction-root {
@@ -96,7 +97,7 @@ a.MuiButtonBase-root.MuiListItem-root.MuiListItem-gutters.MuiListItem-button {
   color: rgb(255, 255, 255);
 }
 .gridA {
-  background-color: rgb(2, 119, 87);
+  /* background-color: rgb(2, 119, 87); */
   color: rgb(255, 255, 255);
 
   /* margin-top: 10px; */
@@ -119,16 +120,19 @@ h1 {
   background-color: #3f51b5 !important;
 } */
 @media (min-width: 780px) {
-  .tt {
-    width: 40% !important;
-  }
-  .MuiBottomNavigation-root {
+  /* .tt {
+    display: none;
+  } */
+  /* .MuiBottomNavigation-root {
     position: fixed;
     width: 40% !important;
   }
   .imgSet {
     padding-left: 10px;
-  }
+  } */
+  /* .MuiAppBar-colorPrimary {
+    width: 40% !important;
+  } */
 }
 
 /* for ticket */
