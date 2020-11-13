@@ -33,7 +33,8 @@ const styles = (theme) => ({
 class Ticket extends Component {
   state = {};
   render() {
-    const { classes } = this.props;
+    const { classes, ticketQst } = this.props;
+    console.log("Qstn----", ticketQst);
     return (
       <React.Fragment>
         <div
@@ -50,6 +51,16 @@ class Ticket extends Component {
             //  style={{ width: "50%" }}
           >
             {/* col1 for row */}
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Typography
+                variant="title"
+                className="l4"
+                style={{ color: "white" }}
+                noWrap
+              >
+                {ticketQst}
+              </Typography>
+            </Grid>
             <Grid item xs={2} container style={{ backgroundColor: "#f5f2f2" }}>
               {/* <Typography>BarCode</Typography> */}
               {/* <Card> */}

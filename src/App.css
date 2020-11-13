@@ -119,7 +119,34 @@ h1 {
   width: 100%;
   background-color: #3f51b5 !important;
 } */
-@media (min-width: 780px) {
+@media (max-width: 768px) {
+  /* mobile devices */
+  .fDown {
+    display: none !important;
+  }
+  .MuiAppBar-colorPrimary {
+    top: 0px !important;
+    position: fixed !important;
+  }
+  .MuiBottomNavigation-root {
+    bottom: 0 !important;
+    position: fixed !important;
+    width: 100%;
+  }
+  .allContent {
+    margin-top: 60px !important;
+  }
+  /* .MuiStepper-vertical {
+    overflow-y: auto !important;
+  } */
+
+  /* .modelDiv {
+    display: none !important;
+  } */
+
+  /* .MuiTab-root {
+    min-width: "100%" !important;
+  } */
   /* .tt {
     display: none;
   } */
@@ -133,6 +160,24 @@ h1 {
   /* .MuiAppBar-colorPrimary {
     width: 40% !important;
   } */
+}
+@media (min-width: 768px) {
+  /* for desktop */
+  .viewTicketClass {
+    display: none !important;
+  }
+  /* .modelDiv {
+    display: none !important;
+  } */
+  .MuiAppBar-colorPrimary {
+    top: 0px !important;
+    /* position: fixed !important; */
+  }
+  .MuiBottomNavigation-root {
+    bottom: 0 !important;
+    /* position: fixed !important; */
+    /* width: 100%; */
+  }
 }
 
 /* for ticket */
@@ -176,11 +221,11 @@ h1 {
   background-color: rgb(174, 224, 174) !important;
   margin: 2px !important;
 }
-@media (min-width: 600px) {
+/* @media (min-width: 600px) {
   .MuiTab-root {
     min-width: 100px !important;
   }
-}
+} */
 
 .inpText {
   width: 50px !important;
@@ -202,7 +247,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-right: 8px !important;
 }
 .scoreBtn4 {
-  padding-right: 20px !important;
+  padding-right: 23px !important;
 }
 .wktBtn4 {
   padding-right: 8px !important;

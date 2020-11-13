@@ -21,10 +21,11 @@ import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import Modal from "@material-ui/core/Modal";
 import Ticket from "../common/Ticket";
+import Fade from "@material-ui/core/Fade";
 export default class TicketSection extends Component {
   state = {
-    activeStep: 0,
-    setActiveStep: 0,
+    activeStep: -1,
+    // setActiveStep: 0,
     steps: [
       "Who Will win the Toss ?",
       "Total Score in first Inning ?",
@@ -150,10 +151,11 @@ export default class TicketSection extends Component {
     open: false,
     setOpen: false,
   };
-  handleOpen = (index) => {
+  handleOpen = (index, label) => {
     let currentToggle = this.state.activeStep;
     console.log("clickked", currentToggle, index);
     this.setState({ activeStep: index });
+    this.props.onTicket(label);
   };
   handleNext = () => {
     console.log("sss", this.state.activeStep);
@@ -169,15 +171,15 @@ export default class TicketSection extends Component {
   handleReset = () => {
     this.setState({ activeStep: 0 });
   };
-  // handleOpenModel = () => {
-  //   // setOpen(true);
-  //   this.setState({ setOpen: true });
-  // };
+  handleOpenModel = () => {
+    // setOpen(true);
+    this.setState({ setOpen: true, open: true });
+  };
 
-  // handleClose = () => {
-  //   // setOpen(false);
-  //   this.setState({ setOpen: false });
-  // };
+  handleClose = () => {
+    // setOpen(false);
+    this.setState({ setOpen: false });
+  };
   useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -455,18 +457,27 @@ export default class TicketSection extends Component {
                   {this.state.tossPrice}
                 </label>
               </div>
-              {/* <div>
+
+              <div className="modelDiv">
                 <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  // className={classes.modal}
                   open={this.state.setOpen}
                   onClose={this.handleClose}
-                  aria-labelledby="simple-modal-title"
-                  aria-describedby="simple-modal-description"
+                  closeAfterTransition
+                  // BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
                 >
-                  <h2 style={{ textAlign: "center", color: "white" }}>
-                    Simple React Modal
-                  </h2>
+                  <Fade in={this.state.setOpen}>
+                    <div>
+                      <Ticket />
+                    </div>
+                  </Fade>
                 </Modal>
-              </div> */}
+              </div>
             </CardContent>
           </Card>
         );
@@ -521,7 +532,29 @@ export default class TicketSection extends Component {
                   {this.state.sCorePrice}
                 </label>
               </div>
+              <div className="modelDiv">
+                <Modal
+                  className="modelDiv"
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  // className={classes.modal}
+                  open={this.state.setOpen}
+                  onClose={this.handleClose}
+                  closeAfterTransition
+                  // BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.setOpen}>
+                    <div>
+                      <Ticket />
+                    </div>
+                  </Fade>
+                </Modal>
+              </div>
             </CardContent>
+            {/* <Ticket /> */}
           </Card>
         );
       case 2:
@@ -568,6 +601,27 @@ export default class TicketSection extends Component {
                   Price : ₹100 Qty : {this.state.winCount} = ₹
                   {this.state.winPrice}
                 </label>
+              </div>
+              <div className="modelDiv">
+                <Modal
+                  className="modelDiv"
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  // className={classes.modal}
+                  open={this.state.setOpen}
+                  onClose={this.handleClose}
+                  closeAfterTransition
+                  // BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.setOpen}>
+                    <div>
+                      <Ticket />
+                    </div>
+                  </Fade>
+                </Modal>
               </div>
             </CardContent>
           </Card>
@@ -618,6 +672,27 @@ export default class TicketSection extends Component {
                   Price : ₹100 Qty : {this.state.wicketCount} = ₹
                   {this.state.wicketPrice}
                 </label>
+              </div>
+              <div className="modelDiv">
+                <Modal
+                  className="modelDiv"
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  // className={classes.modal}
+                  open={this.state.setOpen}
+                  onClose={this.handleClose}
+                  closeAfterTransition
+                  // BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.setOpen}>
+                    <div>
+                      <Ticket />
+                    </div>
+                  </Fade>
+                </Modal>
               </div>
             </CardContent>
           </Card>
@@ -682,16 +757,16 @@ export default class TicketSection extends Component {
         </div>
 
         <div
-        // id="content-1"
-        // style={{ height: "460px", overflowY: "auto" }}
-        // className="pmd-scrollbar mCustomScrollbar"
+          // id="content-1"
+          style={{ height: "540px", overflowY: "auto" }}
+          className="tContent"
         >
           <Stepper activeStep={activeStep} orientation="vertical">
             {steps.map((label, index) => (
               <Step key={label}>
                 <StepLabel
                   style={{ cursor: "pointer" }}
-                  onClick={() => this.handleOpen(index)}
+                  onClick={() => this.handleOpen(index, label)}
                 >
                   {label}
                 </StepLabel>
@@ -700,23 +775,32 @@ export default class TicketSection extends Component {
                   <div
                   //  className={classes.actionsContainer}
                   >
-                    <div style={{ paddingTop: 10 }}>
-                      <Button
+                    <div
+                      style={{ paddingTop: 10 }}
+                      style={{ textAlign: "center" }}
+                    >
+                      {/* <Button
                         disabled={activeStep === 0}
                         onClick={this.handleBack}
                         className=""
                       >
                         Back
-                      </Button>
-                      <Button
+                      </Button> */}
+                      {/* <Button
                         variant="contained"
                         color="primary"
                         onClick={this.handleNext}
                         className=""
                       >
                         {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                      </Button>
-                      <Button onClick={this.handleOpenModel}>
+                      </Button> */}
+
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleOpenModel}
+                        className="viewTicketClass"
+                      >
                         View Ticket
                       </Button>
                     </div>
@@ -739,7 +823,7 @@ export default class TicketSection extends Component {
               </Button>
             </Paper>
           )}
-          <div style={{ textAlign: "center", marginTop: 15 }}>
+          <div style={{ textAlign: "center", marginTop: 15, marginBottom: 15 }}>
             {/* <Paper square style={{ textAlign: "center" }}> */}
             <Button
               component={Link}
