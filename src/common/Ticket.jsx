@@ -31,10 +31,13 @@ const styles = (theme) => ({
   },
 });
 class Ticket extends Component {
-  state = {};
+  state = { ticketQst: "" };
   render() {
     const { classes, ticketQst } = this.props;
-    console.log("Qstn----", ticketQst);
+    // let qq = this.props.ticketQst;
+    // this.setState({ ticketQst: qq });
+
+    // console.log("Qstn----", this.state.ticketQst);
     return (
       <React.Fragment>
         <div

@@ -3,28 +3,28 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import NotFound from "./components/notFound";
 import SignIn from "./components/SignIn";
-import BottomAppBar from "./common/BottomAppBar";
-import TopAppBar from "./common/TopAppBar";
+import BottomAppBar from "./common/include/BottomAppBar";
+import TopAppBar from "./common/include/TopAppBar";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
 import "./App.css";
 import Quiz from "./components/Quiz";
 import Football from "./components/Football";
-import FAQ from "./common/FAQ";
-import Privacy from "./common/Privacy";
+// import FAQ from "./common/Menu/FAQ";
+import Privacy from "./common/menu/Privacy";
 import Grid from "@material-ui/core/Grid";
-import HomeSub1 from "./common/HomeSub1";
-import HomeSub2 from "./common/HomeSub2";
+
 import TicketSection from "./common/TicketSection";
 // import TicketSection from "./common/TicketSection";
 import Payment from "./components/Payment";
-import Container from "@material-ui/core/Container";
 import Ticket from "./common/Ticket";
+import Faq from "./common/menu/Faq";
 class App extends Component {
   state = {
     linkAct: "",
     isTicket: false,
     ticketQst: "",
+    youHaveToPay: "",
   };
 
   handleClickLink = (name) => {
@@ -35,6 +35,10 @@ class App extends Component {
     let isTicket = true;
     // isTicket = !this.state.isTicket;
     this.setState({ ticketQst, isTicket });
+  };
+  handlePrice = (youHaveToPay) => {
+    console.log("youHaveToPay", youHaveToPay);
+    // this.setState({ youHaveToPay });
   };
   render() {
     console.log("globl", this.state.linkAct);
@@ -59,7 +63,10 @@ class App extends Component {
                     // component={TicketSection}
                     // onTicket={this.handleTicket}
                     render={() => (
-                      <TicketSection onTicket={this.handleTicket} />
+                      <TicketSection
+                        onTicket={this.handleTicket}
+                        priceUp={this.handlePrice}
+                      />
                     )}
                   ></Route>
                   <Route
@@ -71,7 +78,7 @@ class App extends Component {
                   <Route path="/home/play" component={HomeSub2}></Route> */}
 
                   <Route exact path="/menu" component={Menu}></Route>
-                  <Route path="/menu/faq" component={FAQ}></Route>
+                  <Route path="/menu/faq" component={Faq}></Route>
                   <Route path="/menu/privacy" component={Privacy}></Route>
 
                   <Route path="/register" component={SignUp}></Route>

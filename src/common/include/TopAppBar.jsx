@@ -21,7 +21,8 @@ class TopAppBar extends Component {
     const { updateStatus } = this.props;
 
     return (
-      <AppBar position="static">
+      <AppBar>
+        {/* <AppBar position="static"> */}
         <Toolbar>
           <Grid container>
             <Grid item xs={4} style={{ textAlign: "left" }}>

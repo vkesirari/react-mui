@@ -127,14 +127,18 @@ h1 {
   .MuiAppBar-colorPrimary {
     top: 0px !important;
     position: fixed !important;
+    width: 100% !important;
   }
   .MuiBottomNavigation-root {
     bottom: 0 !important;
     position: fixed !important;
-    width: 100%;
+    width: 100% !important;
   }
   .allContent {
     margin-top: 60px !important;
+  }
+  .MuiStepContent-root {
+    padding-right: 0px !important;
   }
   /* .MuiStepper-vertical {
     overflow-y: auto !important;
@@ -169,14 +173,19 @@ h1 {
   /* .modelDiv {
     display: none !important;
   } */
-  .MuiAppBar-colorPrimary {
+  .MuiAppBar-root {
     top: 0px !important;
+    width: 41.666667% !important;
+    left: 0 !important;
     /* position: fixed !important; */
   }
   .MuiBottomNavigation-root {
     bottom: 0 !important;
-    /* position: fixed !important; */
-    /* width: 100%; */
+    position: fixed !important;
+    width: 41.666667% !important;
+  }
+  .allContent {
+    margin-top: 72px !important;
   }
 }
 
@@ -251,4 +260,33 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .wktBtn4 {
   padding-right: 8px !important;
+}
+/* @media (min-width: 600px) {
+  .MuiAppBar-colorPrimary {
+    width: 100% !important;
+  }
+  .MuiBottomNavigation-root {
+    width: 100% !important;
+  }
+} */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* STYLES GO HERE */
+  .MuiAppBar-root {
+    top: 0px !important;
+    width: 100% !important;
+
+    left: 0 !important;
+    /* position: fixed !important; */
+  }
+  .MuiBottomNavigation-root {
+    bottom: 0 !important;
+    width: 100% !important;
+  }
+  .viewTicketClass {
+    display: block !important;
+  }
+  .fDown {
+    display: none !important;
+  }
 }

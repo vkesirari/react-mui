@@ -17,11 +17,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
+import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import Modal from "@material-ui/core/Modal";
 import Ticket from "../common/Ticket";
 import Fade from "@material-ui/core/Fade";
+// import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+var ReactCSSTransitionGroup = require("react-transition-group");
 export default class TicketSection extends Component {
   state = {
     activeStep: -1,
@@ -150,7 +152,16 @@ export default class TicketSection extends Component {
     ],
     open: false,
     setOpen: false,
+    value: 0,
   };
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  handleChangeIndex = (index) => {
+    this.setState({ value: index });
+  };
+
   handleOpen = (index, label) => {
     let currentToggle = this.state.activeStep;
     console.log("clickked", currentToggle, index);
@@ -171,9 +182,11 @@ export default class TicketSection extends Component {
   handleReset = () => {
     this.setState({ activeStep: 0 });
   };
-  handleOpenModel = () => {
+  handleOpenModel = (label) => {
+    console.log("label", label);
     // setOpen(true);
     this.setState({ setOpen: true, open: true });
+    this.props.onTicket(label);
   };
 
   handleClose = () => {
@@ -705,7 +718,7 @@ export default class TicketSection extends Component {
 
   render() {
     const { steps, activeStep } = this.state;
-    // console.log("--->", inputDatas);
+    // console.log("--->", this.props.ticketQst);
 
     return (
       <div>
@@ -733,35 +746,49 @@ export default class TicketSection extends Component {
           {/* <LiveTvIcon /> : 20 */}
         </Card>
         <div>
-          <AppBar position="static" color="default">
-            <Tabs
-              value=""
-              //   onChange={handleChange}
-              indicatorColor="primary"
-              textColor="white"
-              style={{
-                backgroundColor: "rgb(2, 119, 87)",
-                color: "white",
-              }}
-              variant="scrollable"
-              scrollButtons="on"
-              aria-label="scrollable force tabs example"
-            >
-              <Tab label="WIN" />
-              <Tab label="SCORE" />
-              <Tab label="RUN" />
-              <Tab label="WICKET" />
-              {/* <Tab label="ITEM" /> */}
-            </Tabs>
-          </AppBar>
+          {/* <AppBar position="static" color="default"> */}
+          <Tabs
+            value={this.state.value}
+            onChange={this.handleChange}
+            // indicatorColor="primary"
+            inkBarStyle={{
+              background: "#000 !important",
+            }}
+            textColor="white"
+            style={{
+              backgroundColor: "rgb(2, 119, 87)",
+              color: "white",
+            }}
+            variant="scrollable"
+            scrollButtons="on"
+            aria-label="scrollable force tabs example"
+          >
+            {/* <Tab label="WIN" component={Link} to="/one" />
+            <Tab label="SCORE" component={Link} to="/two" /> */}
+            <Tab label="WIN" />
+            <Tab label="SCORE" />
+            <Tab label="RUN" />
+            <Tab label="WICKET" />
+            {/* <Tab label="ITEM" /> */}
+          </Tabs>
+          {/* <Switch>
+            <Route path="/one" component={PageShell(ItemOne)} />
+            <Route path="/two" component={PageShell(ItemTwo)} />
+          </Switch> */}
+          {/* </AppBar> */}
         </div>
 
         <div
           // id="content-1"
-          style={{ height: "540px", overflowY: "auto" }}
+          // style={{ height: "540px", overflowY: "auto" }}
           className="tContent"
+          // style={{ height: "auto", overflowY: "auto" }}
         >
-          <Stepper activeStep={activeStep} orientation="vertical">
+          <Stepper
+            activeStep={activeStep}
+            orientation="vertical"
+            // variant="scrollable"
+          >
             {steps.map((label, index) => (
               <Step key={label}>
                 <StepLabel
@@ -798,7 +825,7 @@ export default class TicketSection extends Component {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={this.handleOpenModel}
+                        onClick={() => this.handleOpenModel(label)}
                         className="viewTicketClass"
                       >
                         View Ticket
@@ -829,6 +856,12 @@ export default class TicketSection extends Component {
               component={Link}
               to="/home/live/payment/1"
               style={{ backgroundColor: "rgb(2, 119, 87)", color: "white" }}
+              onClick={this.props.priceUp(
+                this.state.tossPrice +
+                  this.state.sCorePrice +
+                  this.state.wicketPrice +
+                  this.state.winPrice
+              )}
             >
               Click here to Pay ₹
               {this.state.tossPrice +
@@ -843,4 +876,37 @@ export default class TicketSection extends Component {
     );
   }
 }
+
+function ItemOne(theme) {
+  return (
+    <Paper>
+      <div>Item 1</div>
+    </Paper>
+  );
+}
+
+function ItemTwo(theme) {
+  return (
+    <Paper>
+      <div>Item two</div>
+    </Paper>
+  );
+}
+
+const PageShell = (Page, previous) => {
+  return (props) => (
+    <div className="page">
+      <ReactCSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={600}
+        transitionEnterTimeout={600}
+        transitionLeaveTimeout={600}
+        transitionName={props.match.path === "/one" ? "SlideIn" : "SlideOut"}
+      >
+        {console.log("pppp", props)}
+        <Page {...props} />
+      </ReactCSSTransitionGroup>
+    </div>
+  );
+};
 // export default CreateTicket
