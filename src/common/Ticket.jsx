@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -48,26 +50,8 @@ class Ticket extends Component {
           }}
         >
           {/* <Paper className={classes.paper}> */}
-          <Grid
-            container
-
-            //  style={{ width: "50%" }}
-          >
-            {/* col1 for row */}
-            <Grid item xs={12} style={{ textAlign: "center" }}>
-              <Typography
-                variant="title"
-                className="l4"
-                style={{ color: "white" }}
-                noWrap
-              >
-                {ticketQst}
-              </Typography>
-            </Grid>
+          <Grid container>
             <Grid item xs={2} container style={{ backgroundColor: "#f5f2f2" }}>
-              {/* <Typography>BarCode</Typography> */}
-              {/* <Card> */}
-              {/* <CardContent></CardContent> */}
               <Grid item className="imgSet">
                 <img
                   style={{ transform: "rotate(90deg)" }}
@@ -76,458 +60,185 @@ class Ticket extends Component {
                   className={classes.barcodeImg}
                 />
               </Grid>
-
-              {/* </Card> */}
             </Grid>
-            {/* col2 for other stuff */}
-            <Grid
-              item
-              xs={10}
-              container
-              // style={{ backgroundColor: "grey" }}
-            >
+            <Grid item xs={10} container>
               <Grid item xs={12} container direction="row">
                 <Grid
                   item
                   xs={12}
-                  style={{ backgroundColor: "rgb(128 0 128)", height: "50px" }}
+                  style={{
+                    backgroundColor: "rgb(128 0 128)",
+                    height: "50px",
+                    textAlign: "center",
+                  }}
                 >
-                  <Grid item xs={12} container direction="row">
-                    <Grid
-                      item
-                      xs={6}
-                      style={{
-                        backgroundColor: "rgb(255 165 0)",
-                        height: "50px",
-                      }}
-                    ></Grid>
-                    <Grid
-                      item
-                      xs={6}
-                      // style={{ backgroundColor: "rgb(128 0 128)", height: "40px" }}
-                    >
-                      <Grid item xs={12} container style={{ height: "50px" }}>
-                        <Grid
-                          item
-                          xs={4}
-                          // style={{ backgroundColor: "rgb(128 0 128)", height: "40px" }}
-                        ></Grid>
-                        <Grid item xs={8}>
-                          {/* <Typography gutterBottom variant="subtitle1">
-                            TEAM STADIUM
-                          </Typography> */}
-                          {/* <div style={{ display: "flex" }}> */}
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="center"
-                          >
-                            <Typography
-                              // variant="title"
-                              className="l4"
-                              // style={{ color: "white" }}
-                              noWrap
-                            >
-                              TEAM
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="center"
-                          >
-                            <Typography
-                              // variant="title"
-                              className="l4"
-                              // style={{ color: "white" }}
-                              noWrap
-                            >
-                              STADIUM
-                            </Typography>
-                          </Grid>
-
-                          {/* </div> */}
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  {/* <Typography gutterBottom variant="subtitle1">
-                    Label 1
-                  </Typography> */}
+                  <Typography
+                    variant="title"
+                    className="l4"
+                    style={{ color: "white" }}
+                    noWrap
+                  >
+                    {ticketQst}
+                  </Typography>
                 </Grid>
 
-                <Grid item xs={12} container>
-                  <Grid
-                    item
-                    xs={6}
-                    container
-                    style={{ backgroundColor: "#f5f2f2", paddingLeft: "10px" }}
-                  >
-                    <Grid item xs={12} container>
-                      <Grid
-                        item
-                        xs={2}
-                        container
-                        alignItems="center"
-                        justify="center"
-                      >
-                        <Typography gutterBottom className="l5">
-                          15
-                        </Typography>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={5}
-                        container
-                        alignItems="center"
-                        justify="center"
-                        // style={{ padding: 2 }}
-                      >
+                <Grid
+                  item
+                  xs={12}
+                  container
+                  style={{
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    backgroundColor: "#f5f2f2",
+                  }}
+                >
+                  <Grid container style={{ textAlign: "center" }}>
+                    <Grid item xs={4}>
+                      <img src="/mi.png" style={{ width: 100, height: 100 }} />
+                    </Grid>
+                    <Grid item xs={4} style={{ padding: 40, color: "black" }}>
+                      <Typography variant="h5">v/s</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <img src="/dd.png" style={{ width: 100, height: 100 }} />
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12} container>
+                    <Grid
+                      item
+                      xs={12}
+                      container
+                      style={{
+                        backgroundColor: "lightblue",
+                        marginBottom: 5,
+                        paddingLeft: 5,
+                      }}
+                    >
+                      <Grid item xs={12} container>
                         <Grid
                           item
-                          xs={12}
-                          container
-                          direction="row"
-                          alignItems="center"
-                          justify="center"
+                          xs={6}
+                          style={
+                            {
+                              // backgroundColor: "rgb(128 0 128)",
+                              // height: "40px",
+                            }
+                          }
                         >
-                          <Typography
-                            // variant="title"
-                            // className="l4"
-                            // style={{ color: "white" }}
-                            noWrap
-                            className="l7"
-                          >
-                            August
+                          <Typography gutterBottom variant="subtitle1">
+                            Zone
                           </Typography>
                         </Grid>
                         <Grid
                           item
-                          xs={12}
-                          container
-                          direction="row"
-                          alignItems="center"
-                          justify="center"
+                          xs={6}
+                          style={
+                            {
+                              // backgroundColor: "rgb(128 0 128)",
+                              // height: "40px",
+                            }
+                          }
                         >
                           <Typography
-                            // variant="title"
-                            // className="l4"
-                            // style={{ color: "white" }}
-                            noWrap
-                            className="l7"
+                            gutterBottom
+                            variant="subtitle1"
+                            style={{ wordWrap: "break-word" }}
                           >
-                            2018
+                            : East Stand
                           </Typography>
                         </Grid>
-
-                        {/* <Typography gutterBottom className="l2">
-                          2018
-                        </Typography> */}
-                      </Grid>
-                      <Grid item xs={1} alignItems="center" container>
-                        <Typography gutterBottom className="l2">
-                          |
-                        </Typography>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={4}
-                        container
-                        alignItems="center"
-                        // justify="center"
-                      >
-                        <Typography gutterBottom className="l6">
-                          14.00
-                        </Typography>
                       </Grid>
                     </Grid>
                     <Grid
                       item
                       xs={12}
                       container
-                      //  style={{ height: "120px" }}
+                      style={{
+                        backgroundColor: "#5dbddd",
+                        marginBottom: 5,
+                        paddingLeft: 5,
+                      }}
                     >
-                      <Grid
-                        item
-                        xs={12}
-                        container
-                        style={{
-                          backgroundColor: "lightblue",
-                          marginBottom: 5,
-                          paddingLeft: 5,
-                        }}
-                      >
-                        <Grid item xs={12} container>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              Zone
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography
-                              gutterBottom
-                              variant="subtitle1"
-                              style={{ wordWrap: "break-word" }}
-                            >
-                              : East Stand
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        container
-                        style={{
-                          backgroundColor: "#5dbddd",
-                          marginBottom: 5,
-                          paddingLeft: 5,
-                        }}
-                      >
-                        <Grid item xs={12} container>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              Seat/Row
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              : 4/5
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        container
-                        style={{
-                          backgroundColor: "lightblue",
-                          marginBottom: 5,
-                          paddingLeft: 5,
-                        }}
-                      >
-                        <Grid item xs={12} container>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              Price
-                            </Typography>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            style={
-                              {
-                                // backgroundColor: "rgb(128 0 128)",
-                                // height: "40px",
-                              }
-                            }
-                          >
-                            <Typography gutterBottom variant="subtitle1">
-                              : $100
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <Grid item xs={12} container>
-                      <Typography
-                        gutterBottom
-                        // variant="subtitle2"
-                        className="l1"
-                      >
-                        League A
-                      </Typography>
-                    </Grid>
-                  </Grid>
-
-                  <Grid
-                    item
-                    xs={6}
-                    container
-                    style={{ backgroundColor: "#f5f2f2" }}
-                  >
-                    <Grid item xs={12} container>
-                      <Grid
-                        item
-                        xs={6}
-
-                        //  style={{ backgroundColor: "red" }}
-                      >
-                        <Typography gutterBottom variant="subtitle1">
-                          img
-                        </Typography>
-                      </Grid>
-
-                      <Grid
-                        item
-                        xs={6}
-                        // style={{ backgroundColor: "pink" }}
-                      >
-                        {/* <Typography gutterBottom variant="subtitle1">
-                          det
-                        </Typography> */}
+                      <Grid item xs={12} container>
                         <Grid
                           item
-                          xs={12}
-                          alignItems="center"
-                          justify="center"
-                          container
-                          style={{
-                            backgroundColor: "rgb(255 165 0) ",
-                            marginTop: "8px",
-                          }}
+                          xs={6}
+                          style={
+                            {
+                              // backgroundColor: "rgb(128 0 128)",
+                              // height: "40px",
+                            }
+                          }
                         >
-                          <Typography gutterBottom className="l3">
-                            League A
+                          <Typography gutterBottom variant="subtitle1">
+                            Seat/Row
                           </Typography>
                         </Grid>
-
                         <Grid
                           item
-                          xs={12}
-                          container
-                          style={{ height: "160px" }}
+                          xs={6}
+                          style={
+                            {
+                              // backgroundColor: "rgb(128 0 128)",
+                              // height: "40px",
+                            }
+                          }
                         >
-                          {/* <Typography gutterBottom variant="subtitle1">
-                            demo
-                          </Typography> */}
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            alignItems="center"
-                            justify="center"
-                            style={{ paddingTop: 20 }}
-                          >
-                            <Typography
-                              gutterBottom
-                              // variant="subtitle1"
-                              className="l2"
-                            >
-                              Adult
-                            </Typography>
-                          </Grid>
-
-                          <Grid
-                            item
-                            xs={12}
-                            container
-                            style={{ padding: 30 }}
-                            // style={{ backgroundColor: "rgb(128 0 128) " }}
-                          >
-                            <Grid
-                              item
-                              xs={12}
-                              alignItems="center"
-                              justify="center"
-                              container
-                              direction="row"
-                            >
-                              <Typography className="l2">ADMIT</Typography>
-                            </Grid>
-                            <Grid
-                              item
-                              xs={12}
-                              alignItems="center"
-                              justify="center"
-                              container
-                              direction="row"
-                            >
-                              <Typography className="l2">ONE</Typography>
-                            </Grid>
-                          </Grid>
+                          <Typography gutterBottom variant="subtitle1">
+                            : 4/5
+                          </Typography>
                         </Grid>
-
+                      </Grid>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      container
+                      style={{
+                        backgroundColor: "lightblue",
+                        marginBottom: 5,
+                        paddingLeft: 5,
+                      }}
+                    >
+                      <Grid item xs={12} container>
                         <Grid
                           item
-                          xs={12}
-                          container
-                          style={{
-                            backgroundColor: "rgb(128 0 128) ",
-                            marginBottom: "5px",
-                            height: "30px",
-                          }}
+                          xs={6}
+                          style={
+                            {
+                              // backgroundColor: "rgb(128 0 128)",
+                              // height: "40px",
+                            }
+                          }
                         >
-                          {/* <Typography gutterBottom variant="subtitle1">
-                            LeagueB
-                          </Typography> */}
+                          <Typography gutterBottom variant="subtitle1">
+                            Price
+                          </Typography>
+                        </Grid>
+                        <Grid
+                          item
+                          xs={6}
+                          style={
+                            {
+                              // backgroundColor: "rgb(128 0 128)",
+                              // height: "40px",
+                            }
+                          }
+                        >
+                          <Typography gutterBottom variant="subtitle1">
+                            : $100
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
 
-                <Grid item xs={12} style={{ height: "25px" }}>
-                  <Grid item xs={12} container direction="row">
-                    <Grid
-                      item
-                      xs={6}
-                      style={{
-                        backgroundColor: "rgb(128 0 128)",
-                        height: "25px",
-                      }}
-                    ></Grid>
-                    <Grid
-                      item
-                      xs={6}
-                      style={{
-                        backgroundColor: "rgb(255 165 0)",
-                        height: "25px",
-                      }}
-                    ></Grid>
-                  </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  style={{ height: "25px", backgroundColor: "rgb(255 165 0)" }}
+                >
                   {/* <Typography gutterBottom variant="subtitle1">
                     Label 2
                   </Typography> */}

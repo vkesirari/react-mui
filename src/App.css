@@ -136,9 +136,15 @@ h1 {
   }
   .allContent {
     margin-top: 60px !important;
+    margin-bottom: 71px !important;
   }
   .MuiStepContent-root {
     padding-right: 0px !important;
+  }
+
+  .tContent {
+    /* scroll-behavior: auto !important;
+    height: 200px !important; */
   }
   /* .MuiStepper-vertical {
     overflow-y: auto !important;
@@ -185,7 +191,8 @@ h1 {
     width: 41.666667% !important;
   }
   .allContent {
-    margin-top: 72px !important;
+    margin-top: 65px !important;
+    margin-bottom: 71px !important;
   }
 }
 

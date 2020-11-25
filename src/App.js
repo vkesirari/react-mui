@@ -42,6 +42,8 @@ class App extends Component {
   };
   render() {
     console.log("globl", this.state.linkAct);
+    // console.log("youHaveToPay", this.props.youHaveToPay);
+
     return (
       <React.Fragment>
         <main className="container" className="tt">

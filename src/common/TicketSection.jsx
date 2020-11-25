@@ -782,7 +782,7 @@ export default class TicketSection extends Component {
           // id="content-1"
           // style={{ height: "540px", overflowY: "auto" }}
           className="tContent"
-          // style={{ height: "auto", overflowY: "auto" }}
+          // style={{ height: "auto", overflowY: "scroll" }}
         >
           <Stepper
             activeStep={activeStep}
@@ -851,7 +851,7 @@ export default class TicketSection extends Component {
             </Paper>
           )}
           <div style={{ textAlign: "center", marginTop: 15, marginBottom: 15 }}>
-            {/* <Paper square style={{ textAlign: "center" }}> */}
+            {/* <Paper square style={{ backgroundColor: "black" }}> */}
             <Button
               component={Link}
               to="/home/live/payment/1"
